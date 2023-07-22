@@ -16,6 +16,8 @@
 		701AF8312A6A2BDD005023A7 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF8302A6A2BDD005023A7 /* SidebarView.swift */; };
 		701AF8332A6A2BE2005023A7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF8322A6A2BE2005023A7 /* DetailView.swift */; };
 		701AF8352A6A2F96005023A7 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF8342A6A2F96005023A7 /* Filter.swift */; };
+		701AF8372A6ACE71005023A7 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */; };
+		701AF8392A6B5620005023A7 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		701AF8302A6A2BDD005023A7 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		701AF8322A6A2BE2005023A7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		701AF8342A6A2F96005023A7 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,8 @@
 		701AF80F2A69211C005023A7 = {
 			isa = PBXGroup;
 			children = (
+				701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */,
+				701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */,
 				701AF8342A6A2F96005023A7 /* Filter.swift */,
 				701AF8302A6A2BDD005023A7 /* SidebarView.swift */,
 				701AF8322A6A2BE2005023A7 /* DetailView.swift */,
@@ -157,7 +163,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				701AF8352A6A2F96005023A7 /* Filter.swift in Sources */,
+				701AF8392A6B5620005023A7 /* Tag-CoreDataHelpers.swift in Sources */,
 				701AF82C2A692588005023A7 /* Main.xcdatamodeld in Sources */,
+				701AF8372A6ACE71005023A7 /* Issue-CoreDataHelpers.swift in Sources */,
 				701AF8332A6A2BE2005023A7 /* DetailView.swift in Sources */,
 				701AF82E2A6975A3005023A7 /* DataController.swift in Sources */,
 				701AF8312A6A2BDD005023A7 /* SidebarView.swift in Sources */,
