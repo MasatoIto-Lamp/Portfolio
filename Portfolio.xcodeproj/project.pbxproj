@@ -57,12 +57,6 @@
 		701AF80F2A69211C005023A7 = {
 			isa = PBXGroup;
 			children = (
-				7039DD432A6E171200626306 /* IssueRow.swift */,
-				701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */,
-				701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */,
-				701AF8342A6A2F96005023A7 /* Filter.swift */,
-				701AF8302A6A2BDD005023A7 /* SidebarView.swift */,
-				701AF8322A6A2BE2005023A7 /* DetailView.swift */,
 				701AF81A2A69211C005023A7 /* Portfolio */,
 				701AF8192A69211C005023A7 /* Products */,
 			);
@@ -79,13 +73,12 @@
 		701AF81A2A69211C005023A7 /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
-				701AF82F2A698757005023A7 /* Info.plist */,
 				701AF81B2A69211C005023A7 /* PortfolioApp.swift */,
-				701AF81D2A69211C005023A7 /* ContentView.swift */,
+				7039DD4B2A6EC7EE00626306 /* Logic */,
+				7039DD4A2A6EC78800626306 /* Model */,
+				7039DD492A6EC77100626306 /* Views */,
+				701AF82F2A698757005023A7 /* Info.plist */,
 				701AF82A2A692588005023A7 /* Main.xcdatamodeld */,
-				701AF82D2A6975A3005023A7 /* DataController.swift */,
-				7039DD452A6E49CF00626306 /* IssueView.swift */,
-				7039DD472A6E49D700626306 /* NoIssueView.swift */,
 				701AF81F2A69211D005023A7 /* Assets.xcassets */,
 				701AF8212A69211D005023A7 /* Portfolio.entitlements */,
 				701AF8222A69211D005023A7 /* Preview Content */,
@@ -99,6 +92,37 @@
 				701AF8232A69211D005023A7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7039DD492A6EC77100626306 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				701AF8302A6A2BDD005023A7 /* SidebarView.swift */,
+				701AF81D2A69211C005023A7 /* ContentView.swift */,
+				7039DD432A6E171200626306 /* IssueRow.swift */,
+				701AF8322A6A2BE2005023A7 /* DetailView.swift */,
+				7039DD472A6E49D700626306 /* NoIssueView.swift */,
+				7039DD452A6E49CF00626306 /* IssueView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7039DD4A2A6EC78800626306 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				701AF8342A6A2F96005023A7 /* Filter.swift */,
+				701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */,
+				701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7039DD4B2A6EC7EE00626306 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				701AF82D2A6975A3005023A7 /* DataController.swift */,
+			);
+			path = Logic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
