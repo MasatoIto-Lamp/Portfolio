@@ -72,7 +72,11 @@ struct IssueView: View {
                     TextField("Description", text: $issue.issueContent, prompt: Text("Enter the issue description here"), axis: .vertical)
                 }
             }
-        }.disabled(issue.isDeleted)
+        }
+        .disabled(issue.isDeleted)
+        .onReceive(issue.objectWillChange) { _ in
+            dataController.queueSave()
+        }
     }
 }
 
