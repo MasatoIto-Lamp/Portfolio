@@ -19,6 +19,8 @@
 		701AF8372A6ACE71005023A7 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */; };
 		701AF8392A6B5620005023A7 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */; };
 		7039DD442A6E171200626306 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD432A6E171200626306 /* IssueRow.swift */; };
+		7039DD462A6E49CF00626306 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD452A6E49CF00626306 /* IssueView.swift */; };
+		7039DD482A6E49D700626306 /* NoIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD472A6E49D700626306 /* NoIssueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		7039DD432A6E171200626306 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
+		7039DD452A6E49CF00626306 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
+		7039DD472A6E49D700626306 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 				701AF81D2A69211C005023A7 /* ContentView.swift */,
 				701AF82A2A692588005023A7 /* Main.xcdatamodeld */,
 				701AF82D2A6975A3005023A7 /* DataController.swift */,
+				7039DD452A6E49CF00626306 /* IssueView.swift */,
+				7039DD472A6E49D700626306 /* NoIssueView.swift */,
 				701AF81F2A69211D005023A7 /* Assets.xcassets */,
 				701AF8212A69211D005023A7 /* Portfolio.entitlements */,
 				701AF8222A69211D005023A7 /* Preview Content */,
@@ -173,6 +179,8 @@
 				701AF82E2A6975A3005023A7 /* DataController.swift in Sources */,
 				701AF8312A6A2BDD005023A7 /* SidebarView.swift in Sources */,
 				701AF81E2A69211C005023A7 /* ContentView.swift in Sources */,
+				7039DD462A6E49CF00626306 /* IssueView.swift in Sources */,
+				7039DD482A6E49D700626306 /* NoIssueView.swift in Sources */,
 				7039DD442A6E171200626306 /* IssueRow.swift in Sources */,
 				701AF81C2A69211C005023A7 /* PortfolioApp.swift in Sources */,
 			);

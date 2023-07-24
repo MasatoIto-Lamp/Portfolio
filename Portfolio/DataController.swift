@@ -15,6 +15,7 @@ class DataController: ObservableObject {
     }()
     let container: NSPersistentCloudKitContainer
     @Published var selectedFilter: Filter? = Filter.all
+    @Published var selectedIssue: Issue?
     
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
@@ -91,5 +92,14 @@ class DataController: ObservableObject {
         objectWillChange.send()
     }
     
+    func missingTags(from issue: Issue) -> [Tag] {
+        let request = Tag.fetchRequest()
+        let allTags = (try? container.viewContext.fetch(request)) ?? []
+
+        let allTagsSet = Set(allTags)
+        let difference = allTagsSet.symmetricDifference(issue.issueTags)
+
+        return difference.sorted()
+    }
 }
 

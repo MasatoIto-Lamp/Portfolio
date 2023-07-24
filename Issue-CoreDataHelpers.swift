@@ -42,6 +42,24 @@ extension Issue {
     var issueModificationDate: Date {
         modificationDate ?? .now
     }
+    
+    var issueStatus: String {
+        if completed {
+            return "Closed"
+        } else {
+            return "Open"
+        }
+    }
+    
+    var issueTagsList: String {
+        guard let tags else { return "No tags" }
+
+        if tags.count == 0 {
+            return "No tags"
+        } else {
+            return issueTags.map(\.tagName).formatted()
+        }
+    }
 }
 
 //IssueをSortする処理は書いていないので不要と思われる
