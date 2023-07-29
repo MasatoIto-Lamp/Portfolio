@@ -43,6 +43,11 @@ struct ContentView: View {
                         Text("Oldest to Newest").tag(false)
                     }
                 }
+                
+                Button(action: dataController.newIssue) {
+                    Label("New issue", systemImage: "square.and.pencil")
+                }
+
 
                 Picker("Status", selection: $dataController.filterStatus) {
                     Text("All").tag(Status.all)
