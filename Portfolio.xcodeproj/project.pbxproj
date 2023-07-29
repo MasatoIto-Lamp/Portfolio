@@ -21,6 +21,10 @@
 		7039DD442A6E171200626306 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD432A6E171200626306 /* IssueRow.swift */; };
 		7039DD462A6E49CF00626306 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD452A6E49CF00626306 /* IssueView.swift */; };
 		7039DD482A6E49D700626306 /* NoIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD472A6E49D700626306 /* NoIssueView.swift */; };
+		7039DD4D2A75585C00626306 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD4C2A75585C00626306 /* Bundle-Decodable.swift */; };
+		7039DD4F2A75626600626306 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = 7039DD4E2A75626600626306 /* Awards.json */; };
+		7039DD512A7563DC00626306 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD502A7563DC00626306 /* Award.swift */; };
+		7039DD532A75647900626306 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD522A75647900626306 /* AwardsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,10 @@
 		7039DD432A6E171200626306 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
 		7039DD452A6E49CF00626306 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 		7039DD472A6E49D700626306 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
+		7039DD4C2A75585C00626306 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
+		7039DD4E2A75626600626306 /* Awards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Awards.json; sourceTree = "<group>"; };
+		7039DD502A7563DC00626306 /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
+		7039DD522A75647900626306 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +105,9 @@
 		7039DD492A6EC77100626306 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7039DD522A75647900626306 /* AwardsView.swift */,
 				701AF8302A6A2BDD005023A7 /* SidebarView.swift */,
+				7039DD4C2A75585C00626306 /* Bundle-Decodable.swift */,
 				701AF81D2A69211C005023A7 /* ContentView.swift */,
 				7039DD432A6E171200626306 /* IssueRow.swift */,
 				701AF8322A6A2BE2005023A7 /* DetailView.swift */,
@@ -110,6 +120,8 @@
 		7039DD4A2A6EC78800626306 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7039DD4E2A75626600626306 /* Awards.json */,
+				7039DD502A7563DC00626306 /* Award.swift */,
 				701AF8342A6A2F96005023A7 /* Filter.swift */,
 				701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */,
 				701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */,
@@ -184,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				701AF8242A69211D005023A7 /* Preview Assets.xcassets in Resources */,
+				7039DD4F2A75626600626306 /* Awards.json in Resources */,
 				701AF8202A69211D005023A7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,9 +209,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				701AF8352A6A2F96005023A7 /* Filter.swift in Sources */,
+				7039DD512A7563DC00626306 /* Award.swift in Sources */,
+				7039DD532A75647900626306 /* AwardsView.swift in Sources */,
 				701AF8392A6B5620005023A7 /* Tag-CoreDataHelpers.swift in Sources */,
 				701AF82C2A692588005023A7 /* Main.xcdatamodeld in Sources */,
 				701AF8372A6ACE71005023A7 /* Issue-CoreDataHelpers.swift in Sources */,
+				7039DD4D2A75585C00626306 /* Bundle-Decodable.swift in Sources */,
 				701AF8332A6A2BE2005023A7 /* DetailView.swift in Sources */,
 				701AF82E2A6975A3005023A7 /* DataController.swift in Sources */,
 				701AF8312A6A2BDD005023A7 /* SidebarView.swift in Sources */,
