@@ -50,17 +50,16 @@ struct SidebarView: View {
             }
         }
         .toolbar {
-#if DEBUG
             Button {
                 dataController.deleteAll()
                 dataController.createSampleData()
             } label: {
                 Label("ADD SAMPLES", systemImage: "flame")
             }
-#endif
             
             Button(action: dataController.newTag) {
                 Label("Add tag", systemImage: "plus")
+                
             }
             
             Button {
