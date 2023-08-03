@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  Portfolio
+
+  Created by イトマサ on 2023/08/01.
+  
+*/
+
+"Filters" = "Filters";
+"Smart Filters" = "Smart Filters";
+"Tags" = "Tags";
+"Issues" = "Issues";
+"Turn Filter On" = "Turn Filter On";
+"Turn Filter Off" = "Turn Filter Off";
+"Sort By" = "Sort By";
+"Rename tag" = "Rename tag";
+"Details" = "Details";
+"New Issue" = "New Issue";
+"Filter issues, or type # to add tags" = "Filter issues, or type # to add tags";
+"Filter" = "Filter";
+"Add tag" = "Add tag";
+"Show awards" = "Show awards";
+"Awards" = "Awards";
+"Priority" = "Priority";
+"Actions" = "Actions";
+"Copy Issue Title" = "Copy Issue Title";
+"Close Issue" = "Close Issue";
+"Add Tags" = "Add Tags";
+"Re-open Issue" = "Re-open Issue";
+"Rename" = "Rename";
+"Delete" = "Delete";
+"OK" = "OK";
+"Cancel" = "Cancel";
+"New name" = "New name";
+"ADD SAMPLES" = "ADD SAMPLES";
+"New tag" = "New tag";
+"New issue" = "New issue";
+"All Issues" = "All Issues";
+"Recent Issues" = "Recent Issues";

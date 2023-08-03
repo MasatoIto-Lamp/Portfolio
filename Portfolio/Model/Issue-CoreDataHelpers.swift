@@ -60,6 +60,10 @@ extension Issue {
             return issueTags.map(\.tagName).formatted()
         }
     }
+    
+    var issueFormattedCreationDate: String {
+        issueCreationDate.formatted(date: .numeric, time: .omitted)
+    }
 }
 
 //IssueをSortする処理は書いていないので不要と思われる
