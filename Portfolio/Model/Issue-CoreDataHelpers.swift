@@ -68,7 +68,7 @@ extension Issue {
 
 //IssueをSortする処理は書いていないので不要と思われる
 extension Issue: Comparable {
-    public static func <(lhs: Issue, rhs: Issue) -> Bool {
+    public static func < (lhs: Issue, rhs: Issue) -> Bool {
         let left = lhs.issueTitle.localizedLowercase
         let right = rhs.issueTitle.localizedLowercase
 

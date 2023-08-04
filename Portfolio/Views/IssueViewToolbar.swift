@@ -10,6 +10,10 @@ import SwiftUI
 struct IssueViewToolbar: View {
     @EnvironmentObject var dataController: DataController
     @ObservedObject var issue: Issue
+    
+    var openCloseButtonText: LocalizedStringKey {
+        issue.completed ? "Re-open Issue" : "Close Issue"
+    }
 
     var body: some View {
         Menu {
@@ -24,7 +28,8 @@ struct IssueViewToolbar: View {
                 issue.completed.toggle()
                 dataController.save()
             } label: {
-                Label(issue.completed ? "Re-open Issue" : "Close Issue", systemImage: "bubble.left.and.exclamationmark.bubble.right")
+                Label(openCloseButtonText, systemImage: "bubble.left.and.exclamationmark.bubble.right")
+
             }
             
         } label: {
