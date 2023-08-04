@@ -21,6 +21,12 @@
 		703116722A7B8C40005B35F8 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 703116712A7B8C40005B35F8 /* Localizable.stringsdict */; };
 		703116732A7BA397005B35F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 703116752A7BA397005B35F8 /* Localizable.strings */; };
 		703116772A7BA55A005B35F8 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = 703116792A7BA55A005B35F8 /* Awards.json */; };
+		7031167C2A7BF869005B35F8 /* SidebarViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031167B2A7BF869005B35F8 /* SidebarViewToolbar.swift */; };
+		7031167E2A7C8ECD005B35F8 /* IssueViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031167D2A7C8ECD005B35F8 /* IssueViewToolbar.swift */; };
+		703116802A7C9138005B35F8 /* ContentViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031167F2A7C9138005B35F8 /* ContentViewToolbar.swift */; };
+		703116822A7C98BB005B35F8 /* TagsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703116812A7C98BB005B35F8 /* TagsMenuView.swift */; };
+		703116842A7CA061005B35F8 /* SmartFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703116832A7CA061005B35F8 /* SmartFilterRow.swift */; };
+		703116862A7CA295005B35F8 /* UserFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703116852A7CA295005B35F8 /* UserFilterRow.swift */; };
 		7039DD442A6E171200626306 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD432A6E171200626306 /* IssueRow.swift */; };
 		7039DD462A6E49CF00626306 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD452A6E49CF00626306 /* IssueView.swift */; };
 		7039DD482A6E49D700626306 /* NoIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039DD472A6E49D700626306 /* NoIssueView.swift */; };
@@ -49,6 +55,12 @@
 		703116762A7BA3F9005B35F8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		703116782A7BA55A005B35F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/Awards.json; sourceTree = "<group>"; };
 		7031167A2A7BA565005B35F8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ja; path = ja.lproj/Awards.json; sourceTree = "<group>"; };
+		7031167B2A7BF869005B35F8 /* SidebarViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewToolbar.swift; sourceTree = "<group>"; };
+		7031167D2A7C8ECD005B35F8 /* IssueViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewToolbar.swift; sourceTree = "<group>"; };
+		7031167F2A7C9138005B35F8 /* ContentViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewToolbar.swift; sourceTree = "<group>"; };
+		703116812A7C98BB005B35F8 /* TagsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsMenuView.swift; sourceTree = "<group>"; };
+		703116832A7CA061005B35F8 /* SmartFilterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFilterRow.swift; sourceTree = "<group>"; };
+		703116852A7CA295005B35F8 /* UserFilterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterRow.swift; sourceTree = "<group>"; };
 		7039DD432A6E171200626306 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
 		7039DD452A6E49CF00626306 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 		7039DD472A6E49D700626306 /* NoIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoIssueView.swift; sourceTree = "<group>"; };
@@ -114,13 +126,18 @@
 			children = (
 				7039DD522A75647900626306 /* AwardsView.swift */,
 				701AF8302A6A2BDD005023A7 /* SidebarView.swift */,
+				703116832A7CA061005B35F8 /* SmartFilterRow.swift */,
+				7031167B2A7BF869005B35F8 /* SidebarViewToolbar.swift */,
 				703116712A7B8C40005B35F8 /* Localizable.stringsdict */,
 				7039DD4C2A75585C00626306 /* Bundle-Decodable.swift */,
 				701AF81D2A69211C005023A7 /* ContentView.swift */,
+				7031167F2A7C9138005B35F8 /* ContentViewToolbar.swift */,
 				7039DD432A6E171200626306 /* IssueRow.swift */,
 				701AF8322A6A2BE2005023A7 /* DetailView.swift */,
 				7039DD472A6E49D700626306 /* NoIssueView.swift */,
 				7039DD452A6E49CF00626306 /* IssueView.swift */,
+				703116812A7C98BB005B35F8 /* TagsMenuView.swift */,
+				7031167D2A7C8ECD005B35F8 /* IssueViewToolbar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -141,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				701AF82D2A6975A3005023A7 /* DataController.swift */,
+				703116852A7CA295005B35F8 /* UserFilterRow.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -220,7 +238,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				701AF8352A6A2F96005023A7 /* Filter.swift in Sources */,
+				703116822A7C98BB005B35F8 /* TagsMenuView.swift in Sources */,
 				7039DD512A7563DC00626306 /* Award.swift in Sources */,
+				7031167E2A7C8ECD005B35F8 /* IssueViewToolbar.swift in Sources */,
+				703116842A7CA061005B35F8 /* SmartFilterRow.swift in Sources */,
 				7039DD532A75647900626306 /* AwardsView.swift in Sources */,
 				701AF8392A6B5620005023A7 /* Tag-CoreDataHelpers.swift in Sources */,
 				701AF82C2A692588005023A7 /* Main.xcdatamodeld in Sources */,
@@ -228,9 +249,12 @@
 				7039DD4D2A75585C00626306 /* Bundle-Decodable.swift in Sources */,
 				701AF8332A6A2BE2005023A7 /* DetailView.swift in Sources */,
 				701AF82E2A6975A3005023A7 /* DataController.swift in Sources */,
+				703116802A7C9138005B35F8 /* ContentViewToolbar.swift in Sources */,
 				701AF8312A6A2BDD005023A7 /* SidebarView.swift in Sources */,
 				701AF81E2A69211C005023A7 /* ContentView.swift in Sources */,
+				7031167C2A7BF869005B35F8 /* SidebarViewToolbar.swift in Sources */,
 				7039DD462A6E49CF00626306 /* IssueView.swift in Sources */,
+				703116862A7CA295005B35F8 /* UserFilterRow.swift in Sources */,
 				7039DD482A6E49D700626306 /* NoIssueView.swift in Sources */,
 				7039DD442A6E171200626306 /* IssueRow.swift in Sources */,
 				701AF81C2A69211C005023A7 /* PortfolioApp.swift in Sources */,
