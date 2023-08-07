@@ -10,6 +10,7 @@
 		700C75202A807C0F00D0C21A /* PortfolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700C751F2A807C0F00D0C21A /* PortfolioTests.swift */; };
 		700C75272A807D5A00D0C21A /* AssetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700C75262A807D5A00D0C21A /* AssetTests.swift */; };
 		700C752A2A80888200D0C21A /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700C75292A80888200D0C21A /* TagTests.swift */; };
+		700C752C2A80964100D0C21A /* AwardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700C752B2A80964100D0C21A /* AwardTests.swift */; };
 		701AF81C2A69211C005023A7 /* PortfolioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF81B2A69211C005023A7 /* PortfolioApp.swift */; };
 		701AF81E2A69211C005023A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701AF81D2A69211C005023A7 /* ContentView.swift */; };
 		701AF8202A69211D005023A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 701AF81F2A69211D005023A7 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		700C75262A807D5A00D0C21A /* AssetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTests.swift; sourceTree = "<group>"; };
 		700C75282A807E3800D0C21A /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		700C75292A80888200D0C21A /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagTests.swift; path = Portfolio/Extensions/TagTests.swift; sourceTree = SOURCE_ROOT; };
+		700C752B2A80964100D0C21A /* AwardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AwardTests.swift; path = Portfolio/Awards/AwardTests.swift; sourceTree = SOURCE_ROOT; };
 		701AF8182A69211C005023A7 /* Portfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Portfolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		701AF81B2A69211C005023A7 /* PortfolioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioApp.swift; sourceTree = "<group>"; };
 		701AF81D2A69211C005023A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		700C751E2A807C0F00D0C21A /* PortfolioTests */ = {
 			isa = PBXGroup;
 			children = (
+				700C752B2A80964100D0C21A /* AwardTests.swift */,
 				700C75282A807E3800D0C21A /* TestPlan.xctestplan */,
 				700C75292A80888200D0C21A /* TagTests.swift */,
 				700C75262A807D5A00D0C21A /* AssetTests.swift */,
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				700C75272A807D5A00D0C21A /* AssetTests.swift in Sources */,
+				700C752C2A80964100D0C21A /* AwardTests.swift in Sources */,
 				700C752A2A80888200D0C21A /* TagTests.swift in Sources */,
 				700C75202A807C0F00D0C21A /* PortfolioTests.swift in Sources */,
 			);
