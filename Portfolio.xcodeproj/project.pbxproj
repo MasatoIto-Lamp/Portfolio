@@ -44,7 +44,7 @@
 		701AF8232A69211D005023A7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		701AF82B2A692588005023A7 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		701AF82D2A6975A3005023A7 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		701AF82F2A698757005023A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		701AF82F2A698757005023A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		701AF8302A6A2BDD005023A7 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		701AF8322A6A2BE2005023A7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		701AF8342A6A2F96005023A7 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -80,10 +80,82 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		700C75122A7F80F900D0C21A /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				701AF8302A6A2BDD005023A7 /* SidebarView.swift */,
+				7031167B2A7BF869005B35F8 /* SidebarViewToolbar.swift */,
+				703116832A7CA061005B35F8 /* SmartFilterRow.swift */,
+				701AF8342A6A2F96005023A7 /* Filter.swift */,
+				703116852A7CA295005B35F8 /* UserFilterRow.swift */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		700C75132A7F810C00D0C21A /* Issues */ = {
+			isa = PBXGroup;
+			children = (
+				701AF81D2A69211C005023A7 /* ContentView.swift */,
+				7031167F2A7C9138005B35F8 /* ContentViewToolbar.swift */,
+				7039DD432A6E171200626306 /* IssueRow.swift */,
+			);
+			path = Issues;
+			sourceTree = "<group>";
+		};
+		700C75142A7F811800D0C21A /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				701AF8322A6A2BE2005023A7 /* DetailView.swift */,
+				7039DD472A6E49D700626306 /* NoIssueView.swift */,
+				7039DD452A6E49CF00626306 /* IssueView.swift */,
+				703116812A7C98BB005B35F8 /* TagsMenuView.swift */,
+				7031167D2A7C8ECD005B35F8 /* IssueViewToolbar.swift */,
+			);
+			path = Editing;
+			sourceTree = "<group>";
+		};
+		700C75152A7F812900D0C21A /* Awards */ = {
+			isa = PBXGroup;
+			children = (
+				7039DD522A75647900626306 /* AwardsView.swift */,
+				703116792A7BA55A005B35F8 /* Awards.json */,
+				7039DD502A7563DC00626306 /* Award.swift */,
+			);
+			path = Awards;
+			sourceTree = "<group>";
+		};
+		700C75162A7F813000D0C21A /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				701AF8212A69211D005023A7 /* Portfolio.entitlements */,
+				701AF82A2A692588005023A7 /* Main.xcdatamodeld */,
+				701AF82F2A698757005023A7 /* Info.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		700C75172A7F817200D0C21A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7039DD4C2A75585C00626306 /* Bundle-Decodable.swift */,
+				701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */,
+				701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		700C75182A7F818000D0C21A /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				703116712A7B8C40005B35F8 /* Localizable.stringsdict */,
+				703116752A7BA397005B35F8 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		701AF80F2A69211C005023A7 = {
 			isa = PBXGroup;
 			children = (
-				703116752A7BA397005B35F8 /* Localizable.strings */,
 				701AF81A2A69211C005023A7 /* Portfolio */,
 				701AF8192A69211C005023A7 /* Products */,
 			);
@@ -101,13 +173,15 @@
 			isa = PBXGroup;
 			children = (
 				701AF81B2A69211C005023A7 /* PortfolioApp.swift */,
-				7039DD4B2A6EC7EE00626306 /* Logic */,
-				7039DD4A2A6EC78800626306 /* Model */,
-				7039DD492A6EC77100626306 /* Views */,
-				701AF82F2A698757005023A7 /* Info.plist */,
-				701AF82A2A692588005023A7 /* Main.xcdatamodeld */,
+				701AF82D2A6975A3005023A7 /* DataController.swift */,
+				700C75182A7F818000D0C21A /* Localization */,
+				700C75172A7F817200D0C21A /* Extensions */,
+				700C75162A7F813000D0C21A /* Configuration */,
+				700C75152A7F812900D0C21A /* Awards */,
+				700C75142A7F811800D0C21A /* Editing */,
+				700C75132A7F810C00D0C21A /* Issues */,
+				700C75122A7F80F900D0C21A /* Filters */,
 				701AF81F2A69211D005023A7 /* Assets.xcassets */,
-				701AF8212A69211D005023A7 /* Portfolio.entitlements */,
 				701AF8222A69211D005023A7 /* Preview Content */,
 			);
 			path = Portfolio;
@@ -119,48 +193,6 @@
 				701AF8232A69211D005023A7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		7039DD492A6EC77100626306 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7039DD522A75647900626306 /* AwardsView.swift */,
-				701AF8302A6A2BDD005023A7 /* SidebarView.swift */,
-				703116832A7CA061005B35F8 /* SmartFilterRow.swift */,
-				7031167B2A7BF869005B35F8 /* SidebarViewToolbar.swift */,
-				703116712A7B8C40005B35F8 /* Localizable.stringsdict */,
-				7039DD4C2A75585C00626306 /* Bundle-Decodable.swift */,
-				701AF81D2A69211C005023A7 /* ContentView.swift */,
-				7031167F2A7C9138005B35F8 /* ContentViewToolbar.swift */,
-				7039DD432A6E171200626306 /* IssueRow.swift */,
-				701AF8322A6A2BE2005023A7 /* DetailView.swift */,
-				7039DD472A6E49D700626306 /* NoIssueView.swift */,
-				7039DD452A6E49CF00626306 /* IssueView.swift */,
-				703116812A7C98BB005B35F8 /* TagsMenuView.swift */,
-				7031167D2A7C8ECD005B35F8 /* IssueViewToolbar.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		7039DD4A2A6EC78800626306 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				703116792A7BA55A005B35F8 /* Awards.json */,
-				7039DD502A7563DC00626306 /* Award.swift */,
-				701AF8342A6A2F96005023A7 /* Filter.swift */,
-				701AF8362A6ACE71005023A7 /* Issue-CoreDataHelpers.swift */,
-				701AF8382A6B5620005023A7 /* Tag-CoreDataHelpers.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		7039DD4B2A6EC7EE00626306 /* Logic */ = {
-			isa = PBXGroup;
-			children = (
-				701AF82D2A6975A3005023A7 /* DataController.swift */,
-				703116852A7CA295005B35F8 /* UserFilterRow.swift */,
-			);
-			path = Logic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,7 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Portfolio/Portfolio.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Portfolio/Configuration/Portfolio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Portfolio/Preview Content\"";
@@ -407,7 +439,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Portfolio/Info.plist;
+				INFOPLIST_FILE = Portfolio/Configuration/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -438,7 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Portfolio/Portfolio.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Portfolio/Configuration/Portfolio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Portfolio/Preview Content\"";
@@ -446,7 +478,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Portfolio/Info.plist;
+				INFOPLIST_FILE = Portfolio/Configuration/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
