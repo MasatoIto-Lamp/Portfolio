@@ -8,11 +8,6 @@
 import Foundation
 
 extension Issue {
-    var issueTags: [Tag] {
-        let result = tags?.allObjects as? [Tag] ?? []
-        return result.sorted()
-    }
-    
     static var example: Issue {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
@@ -29,7 +24,7 @@ extension Issue {
         get { title ?? "" }
         set { title = newValue }
     }
-
+    
     var issueContent: String {
         get { content ?? "" }
         set { content = newValue }
@@ -38,7 +33,12 @@ extension Issue {
     var issueCreationDate: Date {
         creationDate ?? .now
     }
-
+    
+    var issueTags: [Tag] {
+        let result = tags?.allObjects as? [Tag] ?? []
+        return result.sorted()
+    }
+    
     var issueModificationDate: Date {
         modificationDate ?? .now
     }
