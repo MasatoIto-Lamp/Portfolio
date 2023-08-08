@@ -43,7 +43,6 @@
 		70ABC3C02A80DE3900277D06 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 700C75322A80CE5C00D0C21A /* DecodableDictionary.json */; };
 		70ABC3C22A80E92400277D06 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABC3C12A80E92400277D06 /* PerformanceTests.swift */; };
 		70ABC3CA2A81371D00277D06 /* PortfolioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABC3C92A81371D00277D06 /* PortfolioUITests.swift */; };
-		70ABC3CC2A81371D00277D06 /* PortfolioUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ABC3CB2A81371D00277D06 /* PortfolioUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,7 +107,6 @@
 		70ABC3C12A80E92400277D06 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		70ABC3C72A81371D00277D06 /* PortfolioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PortfolioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		70ABC3C92A81371D00277D06 /* PortfolioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioUITests.swift; sourceTree = "<group>"; };
-		70ABC3CB2A81371D00277D06 /* PortfolioUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,7 +282,6 @@
 			isa = PBXGroup;
 			children = (
 				70ABC3C92A81371D00277D06 /* PortfolioUITests.swift */,
-				70ABC3CB2A81371D00277D06 /* PortfolioUITestsLaunchTests.swift */,
 			);
 			path = PortfolioUITests;
 			sourceTree = "<group>";
@@ -468,7 +465,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				70ABC3CA2A81371D00277D06 /* PortfolioUITests.swift in Sources */,
-				70ABC3CC2A81371D00277D06 /* PortfolioUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

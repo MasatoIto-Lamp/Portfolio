@@ -18,11 +18,11 @@ class DataController: ObservableObject {
         guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
             fatalError("Failed to locate model file.")
         }
-
+        
         guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
             fatalError("Failed to load model file.")
         }
-
+        
         return managedObjectModel
     }()
     
@@ -44,10 +44,10 @@ class DataController: ObservableObject {
         guard filterText.starts(with: "#") else {
             return []
         }
-
+        
         let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
         let request = Tag.fetchRequest()
-
+        
         if trimmedFilterText.isEmpty == false {
             request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
         }
@@ -56,7 +56,7 @@ class DataController: ObservableObject {
     
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
-
+        
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
@@ -76,17 +76,22 @@ class DataController: ObservableObject {
             if let error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
+#if DEBUG
+            if CommandLine.arguments.contains("enable-testing") {
+                self.deleteAll()
+            }
+#endif
         }
     }
     
     func createSampleData() {
         let viewContext = container.viewContext
-
+        
         for tagCounter in 1...5 {
             let tag = Tag(context: viewContext)
             tag.id = UUID()
             tag.name = "Tag \(tagCounter)"
-
+            
             for issueCounter in 1...10 {
                 let issue = Issue(context: viewContext)
                 issue.title = "Issue \(tagCounter)-\(issueCounter)"
@@ -97,7 +102,7 @@ class DataController: ObservableObject {
                 tag.addToIssues(issue)
             }
         }
-
+        
         try? viewContext.save()
     }
     
@@ -117,17 +122,17 @@ class DataController: ObservableObject {
     func deleteAll() {
         let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
         delete(request1)
-
+        
         let request2: NSFetchRequest<NSFetchRequestResult> = Issue.fetchRequest()
         delete(request2)
-
+        
         save()
     }
     
     private func delete(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         batchDeleteRequest.resultType = .resultTypeObjectIDs
-
+        
         if let delete = try? container.viewContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
             let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
             NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [container.viewContext])
@@ -141,16 +146,16 @@ class DataController: ObservableObject {
     func missingTags(from issue: Issue) -> [Tag] {
         let request = Tag.fetchRequest()
         let allTags = (try? container.viewContext.fetch(request)) ?? []
-
+        
         let allTagsSet = Set(allTags)
         let difference = allTagsSet.symmetricDifference(issue.issueTags)
-
+        
         return difference.sorted()
     }
     
     func queueSave() {
         saveTask?.cancel()
-
+        
         saveTask = Task { @MainActor in
             try await Task.sleep(for: .seconds(3))
             save()
@@ -160,7 +165,7 @@ class DataController: ObservableObject {
     func issuesForSelectedFilter() -> [Issue] {
         let filter = selectedFilter ?? .all
         var predicates = [NSPredicate]()
-
+        
         //フィルタにタグ有るなら、そのタグを持つIssueをフィルタ。タグ無いなら、フィルタの過去フィルタより最近のIssueをフィルタ
         if let tag = filter.tag {
             let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
@@ -172,7 +177,7 @@ class DataController: ObservableObject {
         
         //Serchableに入力された文字列をタイトル、コンテンツに持つIssueをフィルタ
         let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
-
+        
         if trimmedFilterText.isEmpty == false {
             let titlePredicate = NSPredicate(format: "title CONTAINS[c] %@", trimmedFilterText)
             let contentPredicate = NSPredicate(format: "content CONTAINS[c] %@", trimmedFilterText)
@@ -192,7 +197,7 @@ class DataController: ObservableObject {
                 let priorityFilter = NSPredicate(format: "priority = %d", filterPriority)
                 predicates.append(priorityFilter)
             }
-
+            
             if filterStatus != .all {
                 let lookForClosed = filterStatus == .closed
                 let statusFilter = NSPredicate(format: "completed = %@", NSNumber(value: lookForClosed))
@@ -203,7 +208,7 @@ class DataController: ObservableObject {
         let request = Issue.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
-
+        
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         return allIssues
     }
@@ -238,20 +243,20 @@ class DataController: ObservableObject {
             let fetchRequest = Issue.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
-
+            
         case "closed":
             // returns true if they closed a certain number of issues
             let fetchRequest = Issue.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "completed = true")
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
-
+            
         case "tags":
             // return true if they created a certain number of tags
             let fetchRequest = Tag.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
-
+            
         default:
             // an unknown award criterion; this should never be allowed
             // fatalError("Unknown award criterion: \(award.criterion)")
