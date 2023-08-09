@@ -8,6 +8,7 @@
 import Foundation
 
 extension Issue {
+    // Preview用のIssueインスタンス
     static var example: Issue {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
@@ -17,30 +18,36 @@ extension Issue {
         issue.content = "This is an example issue."
         issue.priority = 2
         issue.creationDate = .now
+        issue.completed = false
         return issue
     }
     
+    // オプショナルなtitleプロパティに対しアンラップ処理を行う
     var issueTitle: String {
         get { title ?? "" }
         set { title = newValue }
     }
     
+    // オプショナルなcontentプロパティに対しアンラップ処理を行う
     var issueContent: String {
         get { content ?? "" }
         set { content = newValue }
     }
 
+    // オプショナルなcreationDateプロパティに対しアンラップ処理を行う
     var issueCreationDate: Date {
         creationDate ?? .now
     }
     
+    // オプショナルなmodificationDate属性に対しアンラップ処理を行う
+    var issueModificationDate: Date {
+        modificationDate ?? .now
+    }
+    
+    // オプショナルなtags属性に対しアンラップ処理を行う、同時にNSSet型を[Tag]型へキャストする
     var issueTags: [Tag] {
         let result = tags?.allObjects as? [Tag] ?? []
         return result.sorted()
-    }
-    
-    var issueModificationDate: Date {
-        modificationDate ?? .now
     }
     
     var issueStatus: String {
@@ -66,7 +73,7 @@ extension Issue {
     }
 }
 
-//IssueをSortする処理は書いていないので不要と思われる
+// フィルタ条件に合うIssueをデータベースから取得した後、ソート処理行うためComparableへ準拠する
 extension Issue: Comparable {
     public static func < (lhs: Issue, rhs: Issue) -> Bool {
         let left = lhs.issueTitle.localizedLowercase
