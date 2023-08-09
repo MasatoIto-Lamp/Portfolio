@@ -7,18 +7,28 @@
 
 import CoreData
 
+// CoreDataとのデータ連携、各Viewで使用するデータ管理を一手に担うクラス
 class DataController: ObservableObject {
+    
+    // プレビュー用にデータコントローラのインスタンスを生成
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
         dataController.createSampleData()
         return dataController
     }()
     
+    // Core Dataを使用してローカルデータを読み込みおよび管理するコンテナ
+    // 同時にiCloudと同期させすべてのデバイスで同じデータを共有する役割を担う
+    let container: NSPersistentCloudKitContainer
+    
+    // エンティティモデルファイルの保持する
     static let model: NSManagedObjectModel = {
+        // メインモデルファイルをロードする
         guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
             fatalError("Failed to locate model file.")
         }
         
+        // モデルファイルを読み込む
         guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
             fatalError("Failed to load model file.")
         }
@@ -26,10 +36,9 @@ class DataController: ObservableObject {
         return managedObjectModel
     }()
     
-    let container: NSPersistentCloudKitContainer
-    
+    // 現在選択されているフィルタを保持する
     @Published var selectedFilter: Filter? = Filter.all
-    @Published var selectedIssue: Issue?
+    
     @Published var filterText = ""
     @Published var filterTokens = [Tag]()
     @Published var filterEnabled = false
@@ -37,6 +46,7 @@ class DataController: ObservableObject {
     @Published var filterStatus = Status.all
     @Published var sortType = SortType.dateCreated
     @Published var sortNewestFirst = true
+    @Published var selectedIssue: Issue?
     
     private var saveTask: Task<Void, Error>?
     
@@ -54,17 +64,22 @@ class DataController: ObservableObject {
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
     
+    // データコントローラの初期化
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
         
+        // プレビュー用データはディスクではなくメモリへ保存するための設定
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
+        // データ変更が競合した際のポリシー設定
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
         container.persistentStoreDescriptions.first?.setOption(
             true as NSNumber,
             forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
         )
+        
         NotificationCenter.default.addObserver(
             forName: .NSPersistentStoreRemoteChange,
             object: container.persistentStoreCoordinator,
@@ -72,6 +87,8 @@ class DataController: ObservableObject {
             using: remoteStoreChanged
         )
         container.viewContext.automaticallyMergesChangesFromParent = true
+        
+        // ディスクデータをコンテナへ読み込み
         container.loadPersistentStores { _, error in
             if let error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
@@ -84,6 +101,7 @@ class DataController: ObservableObject {
         }
     }
     
+    // プレビュー用サンプルデータとしてTagを5個、各Tagに対しIssue10個を生成
     func createSampleData() {
         let viewContext = container.viewContext
         
@@ -106,6 +124,7 @@ class DataController: ObservableObject {
         try? viewContext.save()
     }
     
+    // 変更をディスクへ反映
     func save() {
         saveTask?.cancel()
         if container.viewContext.hasChanges {
@@ -113,12 +132,14 @@ class DataController: ObservableObject {
         }
     }
     
+    // 特定のTag、Issueを削除しディスクへ反映
     func delete(_ object: NSManagedObject) {
         objectWillChange.send()
         container.viewContext.delete(object)
         save()
     }
     
+    // 全てのTag、Issueを削除しディスクへ反映
     func deleteAll() {
         let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
         delete(request1)
@@ -129,6 +150,7 @@ class DataController: ObservableObject {
         save()
     }
     
+    // FetchRequestを受け取り、全Tag、もしくは全Issueデータの削除を実行
     private func delete(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         batchDeleteRequest.resultType = .resultTypeObjectIDs
@@ -264,7 +286,6 @@ class DataController: ObservableObject {
         }
     }
 }
-
 
 enum SortType: String {
     case dateCreated = "creationDate"
