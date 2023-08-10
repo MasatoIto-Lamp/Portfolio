@@ -15,8 +15,13 @@ struct SidebarView: View {
     // データベースから全てのTagを取得し格納
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
     
+    // 名前変更する対象のタグを格納する
     @State private var tagToRename: Tag?
+    
+    // 名前変更を行うアラート画面を表示するためのトリガー
     @State private var renamingTag = false
+    
+    // 変更前後のTagの名前を格納する
     @State private var tagName = ""
     
     // AwardsViewをシート表示するためのトリガー
@@ -25,7 +30,7 @@ struct SidebarView: View {
     // スマートフィルタを格納
     let smartFilters: [Filter] = [.all, .recent]
     
-    // データベースから取得したTagをFilterへ変換
+    // データベースから取得したTagをFilterへ変換する
     var tagFilters: [Filter] {
         tags.map { tag in
             Filter(id: tag.tagID, name: tag.tagName, icon: "tag", tag: tag)
@@ -58,7 +63,7 @@ struct SidebarView: View {
         .sheet(isPresented: $showingAwards, content: AwardsView.init)
     }
     
-    // 特定のユーザフィルタ(Tag)を削除する
+    // 画面リスト上でスワイプ削除されたユーザフィルタ(Tag)を削除する
     func delete(_ offsets: IndexSet) {
         for offset in offsets {
             let item = tags[offset]
@@ -66,23 +71,25 @@ struct SidebarView: View {
         }
     }
     
+    // 名前変更するTagおよび現時点の名前を特定し、名前変更のアラート画面をトリガーする
     func rename(_ filter: Filter) {
         tagToRename = filter.tag
         tagName = filter.name
         renamingTag = true
     }
     
+    // 名前変更を確定する
     func completeRename() {
         tagToRename?.name = tagName
         dataController.save()
     }
     
+    // コンテキストメニューから削除選択されたユーザフィルタ(Tag)を削除する
     func delete(_ filter: Filter) {
         guard let tag = filter.tag else { return }
         dataController.delete(tag)
         dataController.save()
     }
-    
 }
 
 struct SidebarView_Previews: PreviewProvider {

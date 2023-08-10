@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+// 絞り込みされたIssueをリスト表示するView
 struct ContentView: View {
+    // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
     
     var body: some View {
@@ -38,8 +40,9 @@ struct ContentView: View {
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(DataController.preview)
+    }
+}

@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+// ContentViewより特定のIssueを受け取りリストの行を構成するView
 struct IssueRow: View {
+    // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
     @ObservedObject var issue: Issue
     
@@ -27,7 +29,9 @@ struct IssueRow: View {
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                 }
+                
                 Spacer()
+                
                 VStack(alignment: .trailing) {
                     Text(issue.issueFormattedCreationDate)
                         .accessibilityLabel(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))

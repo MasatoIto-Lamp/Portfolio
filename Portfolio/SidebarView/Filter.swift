@@ -7,9 +7,7 @@
 
 import Foundation
 
-// Issueの絞り込みを行うためのフィルタを新たす構造体
-// SidebarViewのフィルタ一覧の表示に利用する
-// フィルタ条件に合致するIssueをデータベースから抽出する際に利用する
+// Issueの絞り込みを行うためのフィルタを表す型
 struct Filter: Identifiable, Hashable {
     // 全てのIssueを表示するためのフィルタ(スマートフィルタ)
     static var all = Filter(

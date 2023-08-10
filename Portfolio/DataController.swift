@@ -7,28 +7,26 @@
 
 import CoreData
 
-// CoreDataとのデータ連携、各Viewで使用するデータ管理を一手に担うクラス
+// CoreDataとのデータ連携、各Viewで使用するデータ整形を一手に担うクラス
 class DataController: ObservableObject {
     
-    // プレビュー用にデータコントローラのインスタンスを生成
+    // プレビュー用インスタンス
     static var preview: DataController = {
         let dataController = DataController(inMemory: true)
         dataController.createSampleData()
         return dataController
     }()
     
-    // Core Dataを使用してローカルデータを読み込みおよび管理するコンテナ
-    // 同時にiCloudと同期させすべてのデバイスで同じデータを共有する役割を担う
+    // CoreDataを使用するためのコンテナ
+    // iCloudと同期しデバイス間で同じデータを共有する役割を担う
     let container: NSPersistentCloudKitContainer
     
-    // エンティティモデルファイルの保持する
+    // エンティティのモデルファイルを読み込む
     static let model: NSManagedObjectModel = {
-        // メインモデルファイルをロードする
         guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
             fatalError("Failed to locate model file.")
         }
         
-        // モデルファイルを読み込む
         guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
             fatalError("Failed to load model file.")
         }
@@ -36,17 +34,21 @@ class DataController: ObservableObject {
         return managedObjectModel
     }()
     
-    // 現在選択されているフィルタを保持する
+    // SidebarViewで選択されているフィルタを保持する
     @Published var selectedFilter: Filter? = Filter.all
     
+    // ContentViewで選択されているIssueを保持する
+    @Published var selectedIssue: Issue?
+    
+    // ContentViewの検索boxに入力された文字列を保持する
     @Published var filterText = ""
+    
     @Published var filterTokens = [Tag]()
     @Published var filterEnabled = false
     @Published var filterPriority = -1
     @Published var filterStatus = Status.all
     @Published var sortType = SortType.dateCreated
     @Published var sortNewestFirst = true
-    @Published var selectedIssue: Issue?
     
     private var saveTask: Task<Void, Error>?
     
@@ -184,11 +186,15 @@ class DataController: ObservableObject {
         }
     }
     
+    // ContentViewで表示するFilter条件に合致したIssueだけを返す
     func issuesForSelectedFilter() -> [Issue] {
         let filter = selectedFilter ?? .all
+        
+        // Issueフェッチ時の条件を格納する
         var predicates = [NSPredicate]()
         
-        //フィルタにタグ有るなら、そのタグを持つIssueをフィルタ。タグ無いなら、フィルタの過去フィルタより最近のIssueをフィルタ
+        // FilterがTagを持つ場合、ユーザフィルタを指す。フェッチ条件へtagを持つことを追加。
+        // FilterがTagを持たない場合、スマートフィルタを指す。フェッチ条件へminModificationDateより前であることを追加
         if let tag = filter.tag {
             let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
             predicates.append(tagPredicate)
@@ -197,7 +203,7 @@ class DataController: ObservableObject {
             predicates.append(datePredicate)
         }
         
-        //Serchableに入力された文字列をタイトル、コンテンツに持つIssueをフィルタ
+        // ContentViewの検索boxに文字列が入力されていれば、文字列をタイトル/コンテンツに含むIssueをフェッチ条件へ追加
         let trimmedFilterText = filterText.trimmingCharacters(in: .whitespaces)
         
         if trimmedFilterText.isEmpty == false {
@@ -207,7 +213,7 @@ class DataController: ObservableObject {
             predicates.append(combinedPredicate)
         }
         
-        //ユーザ選択されたトークン(複数の可能性あり)を持つIssueをフィルタ
+        // ユーザ選択されたトークン(複数の可能性あり)を持つIssueをフィルタ
         if filterTokens.isEmpty == false {
             let tokenPredicate = NSPredicate(format: "ANY tags IN %@", filterTokens)
             predicates.append(tokenPredicate)
@@ -247,6 +253,8 @@ class DataController: ObservableObject {
         selectedIssue = issue
     }
     
+    // 新たなTagを追加する
+    // 新たなタグはSidebarViewにユーザフィルタとして表示される
     func newTag() {
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()

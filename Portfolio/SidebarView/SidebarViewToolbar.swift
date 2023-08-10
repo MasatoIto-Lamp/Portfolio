@@ -24,11 +24,12 @@ struct SidebarViewToolbar: View {
             Label("ADD SAMPLES", systemImage: "flame")
         }
 #endif
+        // ユーザフィルタ(Tag)を追加する
         Button(action: dataController.newTag) {
             Label("Add tag", systemImage: "plus")
-            
         }
         
+        // AwardsViewを表示する
         Button {
             showingAwards.toggle()
         } label: {
@@ -40,5 +41,6 @@ struct SidebarViewToolbar: View {
 struct SidebarViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
         SidebarViewToolbar(showingAwards: .constant(true))
+            .environmentObject(DataController.preview)
     }
 }

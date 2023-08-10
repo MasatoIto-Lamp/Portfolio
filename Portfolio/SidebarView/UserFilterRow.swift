@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-// 
+// ユーザフィルタを受け取りフィルタ名とアイコンを表示するView
+// ユーザフィルタはタグ名の変更、および削除を実施可能な点がスマートフィルタと大きく異なる
 struct UserFilterRow: View {
     var filter: Filter
     var rename: (Filter) -> Void
@@ -37,8 +38,12 @@ struct UserFilterRow: View {
     }
 }
 
-//struct UserFilterRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UserFilterRow()
-//    }
-//}
+struct UserFilterRow_Previews: PreviewProvider {
+    static var previews: some View {
+        UserFilterRow(
+            filter: DataController.preview.selectedFilter!,
+            rename: { filter in  },
+            delete: { filter in  }
+        )
+    }
+}

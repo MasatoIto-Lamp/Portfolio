@@ -171,9 +171,9 @@
 		700C75152A7F812900D0C21A /* AwardsView */ = {
 			isa = PBXGroup;
 			children = (
+				7039DD502A7563DC00626306 /* Award.swift */,
 				7039DD522A75647900626306 /* AwardsView.swift */,
 				703116792A7BA55A005B35F8 /* Awards.json */,
-				7039DD502A7563DC00626306 /* Award.swift */,
 			);
 			path = AwardsView;
 			sourceTree = "<group>";

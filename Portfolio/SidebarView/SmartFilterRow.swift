@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-// スマートフィルターを受け取りフィルタ名とアイコンを表示する
+// スマートフィルターを受け取りフィルタ名とアイコンを表示するView
 struct SmartFilterRow: View {
     var filter: Filter
     
     var body: some View {
         NavigationLink(value: filter) {
-            Label(filter.name, systemImage: filter.icon)
+            Label(LocalizedStringKey(filter.name), systemImage: filter.icon)
         }
     }
 }
