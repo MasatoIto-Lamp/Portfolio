@@ -7,13 +7,17 @@
 
 import SwiftUI
 
+// Issueに紐づくタグの削除・追加を行うView
 struct TagsMenuView: View {
+    // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
+    
+    // 現在選択されているIssueを保持する
     @ObservedObject var issue: Issue
     
     var body: some View {
         Menu {
-            // show selected tags first
+            // Issueに紐づいているタグを表示する
             ForEach(issue.issueTags) { tag in
                 Button {
                     issue.removeFromTags(tag)
@@ -22,7 +26,7 @@ struct TagsMenuView: View {
                 }
             }
             
-            // now show unselected tags
+            // Issueに紐づいていないタグを追加候補として表示する
             let otherTags = dataController.missingTags(from: issue)
             
             if otherTags.isEmpty == false {

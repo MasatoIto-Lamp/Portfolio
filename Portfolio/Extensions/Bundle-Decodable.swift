@@ -8,6 +8,7 @@
 import Foundation
 
 extension Bundle {
+    // JSONファイル名とロード対象の型を引数に指定することでデコード後のデータを返す
     func decode<T: Decodable>(
         _ file: String,
         as type: T.Type = T.self,

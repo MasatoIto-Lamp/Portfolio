@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+// ContentViewで選択したIssueの詳細情報を表示するView
 struct DetailView: View {
+    // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
 
+    // Issue選択中or未選択によって表示するViewを切り替える
     var body: some View {
         VStack {
             if let issue = dataController.selectedIssue {

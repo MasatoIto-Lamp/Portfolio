@@ -12,6 +12,7 @@ struct ContentView: View {
     // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
     
+    // Issueのリスト、検索Box、ツールバーを表示するView
     var body: some View {
         List(selection: $dataController.selectedIssue) {
             ForEach(dataController.issuesForSelectedFilter()) { issue in
@@ -30,6 +31,7 @@ struct ContentView: View {
         .toolbar(content: ContentViewToolbar.init)
     }
     
+    // 画面リスト上でスワイプ削除されたIssueを削除する
     func delete(_ offsets: IndexSet) {
         let issues = dataController.issuesForSelectedFilter()
 

@@ -11,8 +11,11 @@ import SwiftUI
 struct IssueRow: View {
     // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
+    
+    // ContentViewから渡されるIssueを格納する
     @ObservedObject var issue: Issue
     
+    // ContentViewのリストに表示する各行のView
     var body: some View {
         NavigationLink(value: issue) {
             HStack {
@@ -52,5 +55,6 @@ struct IssueRow: View {
 struct IssueRow_Previews: PreviewProvider {
     static var previews: some View {
         IssueRow(issue: .example)
+            .environmentObject(DataController.preview)
     }
 }

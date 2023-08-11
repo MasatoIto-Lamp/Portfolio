@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// ユーザフィルタを受け取りフィルタ名とアイコンを表示するView
+// ユーザフィルタを受け取りフィルタ名とアイコンをSidebarに表示するView
 // ユーザフィルタはタグ名の変更、および削除を実施可能な点がスマートフィルタと大きく異なる
 struct UserFilterRow: View {
     var filter: Filter

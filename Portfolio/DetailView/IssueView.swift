@@ -7,9 +7,14 @@
 
 import SwiftUI
 
+// ContentViewにてIssueが選択されている場合に詳細情報を表示する画面
+// Issueのタイトル、内容、優先度、タグ、ステータスなど各情報の更新が可能
 struct IssueView: View {
-    @ObservedObject var issue: Issue
+    // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
+    
+    // 現在選択されているIssueを保持する
+    @ObservedObject var issue: Issue
     
     var body: some View {
         Form {
@@ -54,6 +59,7 @@ struct IssueView: View {
             }
         }
         .disabled(issue.isDeleted)
+        // Issueの情報が更新された際に保存処理を行う
         .onReceive(issue.objectWillChange) { _ in
             dataController.queueSave()
         }

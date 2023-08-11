@@ -43,15 +43,25 @@ class DataController: ObservableObject {
     // ContentViewの検索boxに入力された文字列を保持する
     @Published var filterText = ""
     
+    // ContentViewの検索boxで選択されたトークンを保持する
     @Published var filterTokens = [Tag]()
+    
+    // ContentViewのIssue絞り込みフィルターの有効状態On/Offを保持する
     @Published var filterEnabled = false
+    
+    // ContentViewのIssue絞り込みフィルター条件(優先度)を保持する
     @Published var filterPriority = -1
+    
+    // ContentViewのIssue絞り込みフィルター条件(状態_All/Opne/Closed)を保持する
     @Published var filterStatus = Status.all
+    
+    // ContentViewのIssue一覧リストのソートタイプ(作成日/更新日)を保持する
     @Published var sortType = SortType.dateCreated
+    
+    // ContentViewのソート順を日付が新しい順に並べるかどうか保持する
     @Published var sortNewestFirst = true
     
-    private var saveTask: Task<Void, Error>?
-    
+    // ContentViewの検索Boxで提案されるトークンの一覧を返す
     var suggestedFilterTokens: [Tag] {
         guard filterText.starts(with: "#") else {
             return []
@@ -60,11 +70,15 @@ class DataController: ObservableObject {
         let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
         let request = Tag.fetchRequest()
         
+        // #の後に文字が入力されていた場合、その文字を名前に含むTagをフェッチする
         if trimmedFilterText.isEmpty == false {
             request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
         }
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
+    
+    // DetailVeiwにおける変更保存前のスリープタスクを保持する
+    private var saveTask: Task<Void, Error>?
     
     // データコントローラの初期化
     init(inMemory: Bool = false) {
@@ -74,20 +88,25 @@ class DataController: ObservableObject {
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
+        
         // データ変更が競合した際のポリシー設定
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         
+        // リモートでのデータの変更通知を有効にするための設定
         container.persistentStoreDescriptions.first?.setOption(
             true as NSNumber,
             forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
         )
         
+        // リモートデータストア内で変更が行われた場合に通知を受け取るための通知オブザーバを設定
         NotificationCenter.default.addObserver(
             forName: .NSPersistentStoreRemoteChange,
             object: container.persistentStoreCoordinator,
             queue: .main,
             using: remoteStoreChanged
         )
+        
+        // 親コンテキストからの変更が自動的に子コンテキストにマージされるようにする設定
         container.viewContext.automaticallyMergesChangesFromParent = true
         
         // ディスクデータをコンテナへ読み込み
@@ -96,6 +115,7 @@ class DataController: ObservableObject {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
 #if DEBUG
+            // UIテスト時にアプリのデータをゼロの状態へ戻す
             if CommandLine.arguments.contains("enable-testing") {
                 self.deleteAll()
             }
@@ -115,7 +135,7 @@ class DataController: ObservableObject {
             for issueCounter in 1...10 {
                 let issue = Issue(context: viewContext)
                 issue.title = "Issue \(tagCounter)-\(issueCounter)"
-                issue.content = "Description goes here"
+                issue.content = NSLocalizedString("Description goes here", comment: "Write description here")
                 issue.creationDate = .now
                 issue.completed = Bool.random()
                 issue.priority = Int16.random(in: 0...2)
@@ -163,10 +183,12 @@ class DataController: ObservableObject {
         }
     }
     
+    // リモートでの変更を検知した際にUIを更新する
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
     }
     
+    // Issueに紐づいていないタグを全て返す
     func missingTags(from issue: Issue) -> [Tag] {
         let request = Tag.fetchRequest()
         let allTags = (try? container.viewContext.fetch(request)) ?? []
@@ -177,9 +199,11 @@ class DataController: ObservableObject {
         return difference.sorted()
     }
     
+    // DetailViewにてIssueの情報が更新された際に保存処理を行う
     func queueSave() {
         saveTask?.cancel()
         
+        // 過多な頻度で保存処理が生じぬよう最終更新から3秒間経過後に保存処理を行う
         saveTask = Task { @MainActor in
             try await Task.sleep(for: .seconds(3))
             save()
@@ -221,13 +245,15 @@ class DataController: ObservableObject {
         
         //フィルタ設定がON時のフィルタ
         if filterEnabled {
+            // Issueの優先度条件に合致することをフェッチ条件へ追加
             if filterPriority >= 0 {
                 let priorityFilter = NSPredicate(format: "priority = %d", filterPriority)
                 predicates.append(priorityFilter)
             }
             
+            // Issueのステータス(Open/Closed)に合致することをフェッチ条件へ追加
             if filterStatus != .all {
-                let lookForClosed = filterStatus == .closed
+                let lookForClosed = (filterStatus == .closed)
                 let statusFilter = NSPredicate(format: "completed = %@", NSNumber(value: lookForClosed))
                 predicates.append(statusFilter)
             }
@@ -241,6 +267,7 @@ class DataController: ObservableObject {
         return allIssues
     }
     
+    // 新たなIssueを作成する
     func newIssue() {
         let issue = Issue(context: container.viewContext)
         issue.title = NSLocalizedString("New issue", comment: "Create a new issue")
@@ -253,8 +280,7 @@ class DataController: ObservableObject {
         selectedIssue = issue
     }
     
-    // 新たなTagを追加する
-    // 新たなタグはSidebarViewにユーザフィルタとして表示される
+    // 新たなTagを作成する
     func newTag() {
         let tag = Tag(context: container.viewContext)
         tag.id = UUID()
@@ -262,10 +288,12 @@ class DataController: ObservableObject {
         save()
     }
     
+    // フェッチリクエスト対象の件数を返す (Unitテストにて使用)
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
     
+    // 引数として渡されたアワードを獲得済みかどうかを返す
     func hasEarned(award: Award) -> Bool {
         switch award.criterion {
         case "issues":
@@ -295,11 +323,13 @@ class DataController: ObservableObject {
     }
 }
 
+// ContentViewのIssueリストのソート順を定義した型
 enum SortType: String {
     case dateCreated = "creationDate"
     case dateModified = "modificationDate"
 }
 
+// ContentViewのIssueリストのフィルタ利用としてIssueのステータスを定義した型
 enum Status {
     case all, open, closed
 }

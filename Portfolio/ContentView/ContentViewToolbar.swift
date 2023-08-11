@@ -7,17 +7,19 @@
 
 import SwiftUI
 
+// ContentViewのツールバーを表示するView
 struct ContentViewToolbar: View {
+    // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
     
     var body: some View {
+        // Issueを新規追加するボタン
+        Button(action: dataController.newIssue) {
+            Label("New Issue", systemImage: "square.and.pencil")
+        }
+        
+        // ソート順を設定するMenuボタン
         Menu {
-            Button(dataController.filterEnabled ? "Turn Filter Off" : "Turn Filter On") {
-                dataController.filterEnabled.toggle()
-            }
-            
-            Divider()
-            
             Menu("Sort By") {
                 Picker("Sort By", selection: $dataController.sortType) {
                     Text("Date Created").tag(SortType.dateCreated)
@@ -31,11 +33,17 @@ struct ContentViewToolbar: View {
                     Text("Oldest to Newest").tag(false)
                 }
             }
-            
-            Button(action: dataController.newIssue) {
-                Label("New Issue", systemImage: "square.and.pencil")
+        } label: {
+            Label("Sort", systemImage: "arrow.up.arrow.down")
+        }
+
+        // フィルターを設定するMenuボタン
+        Menu {
+            Button(dataController.filterEnabled ? "Turn Filter Off" : "Turn Filter On") {
+                dataController.filterEnabled.toggle()
             }
             
+            Divider()
             
             Picker("Status", selection: $dataController.filterStatus) {
                 Text("All").tag(Status.all)
@@ -51,6 +59,7 @@ struct ContentViewToolbar: View {
                 Text("High").tag(2)
             }
             .disabled(dataController.filterEnabled == false)
+            
         } label: {
             Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
                 .symbolVariant(dataController.filterEnabled ? .fill : .none)
@@ -61,5 +70,6 @@ struct ContentViewToolbar: View {
 struct ContentViewToolbar_Previews: PreviewProvider {
     static var previews: some View {
         ContentViewToolbar()
+            .environmentObject(DataController.preview)
     }
 }

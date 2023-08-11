@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// スマートフィルターを受け取りフィルタ名とアイコンを表示するView
+// スマートフィルターを受け取りフィルタ名とアイコンをSidebarに表示するView
 struct SmartFilterRow: View {
     var filter: Filter
     

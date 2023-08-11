@@ -257,9 +257,9 @@
 			children = (
 				701AF81B2A69211C005023A7 /* PortfolioApp.swift */,
 				701AF82D2A6975A3005023A7 /* DataController.swift */,
+				700C75162A7F813000D0C21A /* Configuration */,
 				700C75182A7F818000D0C21A /* Localization */,
 				700C75172A7F817200D0C21A /* Extensions */,
-				700C75162A7F813000D0C21A /* Configuration */,
 				700C75152A7F812900D0C21A /* AwardsView */,
 				700C75142A7F811800D0C21A /* DetailView */,
 				700C75132A7F810C00D0C21A /* ContentView */,

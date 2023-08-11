@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+// ContentViewにてIssueが選択されていない場合に表示するView
 struct NoIssueView: View {
+    // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
 
     var body: some View {

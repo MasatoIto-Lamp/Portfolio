@@ -7,17 +7,22 @@
 
 import SwiftUI
 
+// DetailViewのツールバーを表示するView
 struct IssueViewToolbar: View {
+    // 環境からDataControllerインスタンスを読み取るためのプロパティ
     @EnvironmentObject var dataController: DataController
+    
+    // 現在選択されているIssueを保持する
     @ObservedObject var issue: Issue
     
+    // DeatiViewツールバー上のClose/Re-Openボタンのラベルで使用する文字列
     var openCloseButtonText: LocalizedStringKey {
         issue.completed ? "Re-open Issue" : "Close Issue"
     }
 
+    // MenuボタンにてIssueのタイトルをコピーするボタン、Close/Reopenのボタンを表示する
     var body: some View {
         Menu {
-            
             Button {
                 UIPasteboard.general.string = issue.title
             } label: {
@@ -29,7 +34,6 @@ struct IssueViewToolbar: View {
                 dataController.save()
             } label: {
                 Label(openCloseButtonText, systemImage: "bubble.left.and.exclamationmark.bubble.right")
-
             }
             
         } label: {

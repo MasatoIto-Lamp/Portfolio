@@ -6,34 +6,95 @@
   
 */
 
-"Filters" = "Filters";
-"Smart Filters" = "Smart Filters";
-"Tags" = "Tags";
-"Issues" = "Issues";
-"Turn Filter On" = "Turn Filter On";
-"Turn Filter Off" = "Turn Filter Off";
-"Sort By" = "Sort By";
-"Rename tag" = "Rename tag";
-"Details" = "Details";
-"New Issue" = "New Issue";
-"Filter issues, or type # to add tags" = "Filter issues, or type # to add tags";
-"Filter" = "Filter";
-"Add tag" = "Add tag";
-"Show awards" = "Show awards";
-"Awards" = "Awards";
-"Priority" = "Priority";
-"Actions" = "Actions";
-"Copy Issue Title" = "Copy Issue Title";
-"Close Issue" = "Close Issue";
-"Add Tags" = "Add Tags";
-"Re-open Issue" = "Re-open Issue";
-"Rename" = "Rename";
-"Delete" = "Delete";
+
+/* GENERAL STRINGS */
 "OK" = "OK";
-"Cancel" = "Cancel";
-"New name" = "New name";
-"ADD SAMPLES" = "ADD SAMPLES";
-"New tag" = "New tag";
-"New issue" = "New issue";
-"All Issues" = "All Issues";
-"Recent Issues" = "Recent Issues";
+"Cancel" = "キャンセル";
+"Delete" = "削除";
+"Rename" = "名前変更";
+"Actions" = "アクション";
+
+
+
+/* SIDEBARVIEW */
+"Filters" = "フィルタ";
+"Smart Filters" = "スマートフィルタ";
+"All Issues" = "全て";
+"Recent Issues" = "直近1週間";
+"Tags" = "タグフィルタ";
+"Add tag" = "タグ追加";
+"Show awards" = "アワード表示";
+
+"Rename tag" = "タグ名前変更";
+"New name" = "新規名前";
+
+
+
+/* CONTENTVIEW */
+"Issues" = "課題";
+
+/* A button that shows a menu with the following options */
+"Filter" = "フィルター";
+"Turn Filter On" = "フィルタON"; /* Enables filtering */
+"Turn Filter Off" = "フィルタOff"; /* Disables filtering */
+"Sort By" = "並び替え"; /* Adjust the order issues are shown */
+"Date Created" = "作成日"; /* Sort issues by the date they were created */
+"Date Modified" = "変更日"; /* Sort issues by the date they were last changed */
+"Newest to Oldest" = "新しい日付順"; /* Place newer issues before older issues */
+"Oldest to Newest" = "古い日付順"; /* Place older issues before newer issues */
+
+"All" = "全て";
+"Open" = "オープン";
+"Closed" = "クローズ";
+
+"Low" = "低";
+"Medium" = "中";
+"High" = "高";
+
+/* Create a new issue */
+"New Issue" = "新規課題";
+
+/* A text placeholder, to help users search */
+"Filter issues, or type # to add tags" = "検索文字または#を入力しタグを指定";
+
+/* Shown as a status for closed issues */
+"CLOSED" = "クローズ";
+
+
+
+/* DETAILSVIEW */
+"Details" = "詳細";
+
+/* NOISSUEVIEW */
+"No Issue Selected" = "課題が選択されていません";
+
+/* ISSUEVIEW */
+"Copy Issue Title" = "課題タイトルをコピー";
+"Close Issue" = "課題をクローズ";
+"Re-open Issue" = "課題を再オープン";
+
+/* Fields that let the users enter details about a specific issue */
+"Enter the issue title here" = "課題タイトルをここに入力してください";
+"**Modified:** %@" = "**更新日:** %@";
+"**Status:** %@" = "**ステータス:** %@";
+"Priority" = "優先度";
+"Add Tags" = "タグ追加";
+"Basic Information" = "基本情報";
+"Enter the issue description here" = "説明をここに入力してください";
+
+
+
+/* AWARDS VIEW */
+"Awards" = "アワード";
+
+
+
+/* DATA */
+"New tag" = "新規タグ";
+"New issue" = "新規課題";
+
+
+
+/* DEBUG ONLY */
+"ADD SAMPLES" = "サンプルデータ投入";
+"Description goes here" = "説明をここに入力してください";

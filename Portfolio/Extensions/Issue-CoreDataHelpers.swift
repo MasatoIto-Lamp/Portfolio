@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Issue {
     // Preview用のIssueインスタンス
@@ -50,6 +51,7 @@ extension Issue {
         return result.sorted()
     }
     
+    // Issueの状態を文字列で返す
     var issueStatus: String {
         if completed {
             return "Closed"
@@ -58,6 +60,7 @@ extension Issue {
         }
     }
     
+    // Issueに紐づく全てのタグを結合してString型として返す
     var issueTagsList: String {
         guard let tags else { return "No tags" }
 
@@ -68,6 +71,8 @@ extension Issue {
         }
     }
     
+    // Issue作成日をDate型からString型へ変換
+    // ContentViewのIssue一覧リストの各行に表示する
     var issueFormattedCreationDate: String {
         issueCreationDate.formatted(date: .numeric, time: .omitted)
     }
