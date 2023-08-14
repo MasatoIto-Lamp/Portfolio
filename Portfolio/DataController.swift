@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import SwiftUI
 
 // CoreDataとのデータ連携、各Viewで使用するデータ整形を一手に担うクラス
 class DataController: ObservableObject {
@@ -265,6 +266,22 @@ class DataController: ObservableObject {
         
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         return allIssues
+    }
+    
+    // ContetnViewで表示する各Issue行の背景色を返す
+    func colorForSelectedFilter(issue: Issue) -> Color {
+        if issue.completed {
+            return .gray.opacity(0.5)
+        } else {
+            switch issue.priority {
+            case 1:
+                return .yellow.opacity(0.2)
+            case 2:
+                return .red.opacity(0.2)
+            default:
+                return .green.opacity(0.2)
+            }
+        }
     }
     
     // 新たなIssueを作成する

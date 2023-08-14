@@ -47,6 +47,8 @@ struct IssueRow: View {
                 }
                 .foregroundStyle(.secondary)
             }
+            .background(dataController.colorForSelectedFilter(issue: issue))
+            
         }
         .accessibilityHint(issue.priority == 2 ? "High priority" : "")
     }
