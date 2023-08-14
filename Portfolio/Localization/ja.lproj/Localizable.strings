@@ -52,7 +52,7 @@
 "High" = "高";
 
 /* Create a new issue */
-"New Issue" = "新規課題";
+"New Issue" = "新規作成";
 
 /* A text placeholder, to help users search */
 "Filter issues, or type # to add tags" = "検索文字または#を入力しタグを指定";
@@ -75,7 +75,7 @@
 
 /* Fields that let the users enter details about a specific issue */
 "Enter the issue title here" = "課題タイトルをここに入力してください";
-"**Modified:** %@" = "**更新日:** %@";
+"**Modified:** %@" = "**更新日時:** %@";
 "**Status:** %@" = "**ステータス:** %@";
 "Priority" = "優先度";
 "Add Tags" = "タグ追加";
@@ -86,6 +86,8 @@
 
 /* AWARDS VIEW */
 "Awards" = "アワード";
+"Unlocked: %@" = "未獲得アワード: %@";
+"Locked" = "獲得済みアワード";
 
 
 
@@ -97,4 +99,4 @@
 
 /* DEBUG ONLY */
 "ADD SAMPLES" = "サンプルデータ投入";
-"Description goes here" = "説明をここに入力してください";
+"Description goes here" = "内容をここに入力してください";

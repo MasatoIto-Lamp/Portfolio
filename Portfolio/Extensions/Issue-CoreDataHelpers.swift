@@ -54,9 +54,9 @@ extension Issue {
     // Issueの状態を文字列で返す
     var issueStatus: String {
         if completed {
-            return "Closed"
+            return NSLocalizedString("Closed", comment: "Closed")
         } else {
-            return "Open"
+            return NSLocalizedString("Open", comment: "Open")
         }
     }
     

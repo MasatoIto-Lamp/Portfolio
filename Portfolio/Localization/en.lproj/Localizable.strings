@@ -85,7 +85,8 @@
 
 /* AWARDS VIEW */
 "Awards" = "Awards";
-
+"Unlocked: %@" = "Unlocked: %@";
+"Locked" = "Locked";
 
 
 /* DATA */

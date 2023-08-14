@@ -68,9 +68,13 @@ struct AwardsView: View {
         dataController.hasEarned(award: award) ? Color(award.color) : .secondary.opacity(0.5)
     }
 
-    
-    func label(for award: Award) -> LocalizedStringKey {
-        dataController.hasEarned(award: award) ? "Unlocked: \(award.name)" : "Locked"
+    // VoiceOver用に各アワードが獲得済みかどうか示すテキストを返す
+    func label(for award: Award) -> String {
+        if dataController.hasEarned(award: award) {
+            return NSLocalizedString("Unlocked: \(award.name)", comment: "Unlocked")
+        } else {
+            return NSLocalizedString("Locked", comment: "Locked")
+        }
     }
 }
 
