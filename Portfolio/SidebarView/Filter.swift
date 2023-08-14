@@ -15,13 +15,33 @@ struct Filter: Identifiable, Hashable {
         name: "All Issues",
         icon: "tray")
     
-    // 1週間以内に更新されたIssueを表示するためのフィルタ(スマートフィルタ)
-    static var recent = Filter(
+    // 期限切れのIssueを表示するためのフィルタ(スマートフィルタ)
+    static var expired = Filter(
         id: UUID(),
-        name: "Recent Issues",
-        icon: "clock",
-        minModificationDate: .now.addingTimeInterval(86400 * -7)
-    )
+        name: "Expired Issues",
+        icon: "calendar.badge.exclamationmark",
+        dueDate: .now)
+    
+    // 本日対応期限のIssueを表示するためのフィルタ(スマートフィルタ)
+    static var today = Filter(
+        id: UUID(),
+        name: "Today's Issues",
+        icon: "calendar.badge.exclamationmark",
+        dueDate: .now)
+    
+    // 明日対応期限のIssueを表示するためのフィルタ(スマートフィルタ)
+    static var tomorrow = Filter(
+        id: UUID(),
+        name: "Tomorrow's Issues",
+        icon: "calendar.badge.exclamationmark",
+        dueDate: .now)
+    
+    // 1週間以内が対応期限のIssueを表示するためのフィルタ(スマートフィルタ)
+    static var inWeek = Filter(
+        id: UUID(),
+        name: "Weekly Issues",
+        icon: "calendar.badge.exclamationmark",
+        dueDate: .now)
 
     // フィルタID
     var id: UUID
@@ -34,6 +54,9 @@ struct Filter: Identifiable, Hashable {
     
     // 直近の更新日(デフォルトは最過去)
     var minModificationDate = Date.distantPast
+    
+    // 対応期限(スマートフィルタ用)
+    var dueDate: Date?
     
     // フィルタしたいタグ
     var tag: Tag?

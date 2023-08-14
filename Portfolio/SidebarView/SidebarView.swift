@@ -28,7 +28,7 @@ struct SidebarView: View {
     @State private var showingAwards = false
     
     // スマートフィルタを格納
-    let smartFilters: [Filter] = [.all, .recent]
+    let smartFilters: [Filter] = [.all, .expired, .today, .tomorrow, .inWeek]
     
     // データベースから取得したTagをFilterへ変換する
     var tagFilters: [Filter] {

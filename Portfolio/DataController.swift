@@ -48,13 +48,13 @@ class DataController: ObservableObject {
     @Published var filterTokens = [Tag]()
     
     // ContentViewのIssue絞り込みフィルターの有効状態On/Offを保持する
-    @Published var filterEnabled = false
+    @Published var filterEnabled = true
     
     // ContentViewのIssue絞り込みフィルター条件(優先度)を保持する
     @Published var filterPriority = -1
     
     // ContentViewのIssue絞り込みフィルター条件(状態_All/Opne/Closed)を保持する
-    @Published var filterStatus = Status.all
+    @Published var filterStatus = Status.open
     
     // ContentViewのIssue一覧リストのソートタイプ(作成日/更新日)を保持する
     @Published var sortType = SortType.dateCreated
@@ -138,6 +138,7 @@ class DataController: ObservableObject {
                 issue.title = "Issue \(tagCounter)-\(issueCounter)"
                 issue.content = NSLocalizedString("Description goes here", comment: "Write description here")
                 issue.creationDate = .now
+                issue.dueDate = .now.addingTimeInterval(86400 * 7)
                 issue.completed = Bool.random()
                 issue.priority = Int16.random(in: 0...2)
                 tag.addToIssues(issue)
@@ -219,13 +220,71 @@ class DataController: ObservableObject {
         var predicates = [NSPredicate]()
         
         // FilterがTagを持つ場合、ユーザフィルタを指す。フェッチ条件へtagを持つことを追加。
-        // FilterがTagを持たない場合、スマートフィルタを指す。フェッチ条件へminModificationDateより前であることを追加
         if let tag = filter.tag {
             let tagPredicate = NSPredicate(format: "tags CONTAINS %@", tag)
             predicates.append(tagPredicate)
+            
+            // FilterがTagを持たない場合、スマートフィルタを指す
         } else {
-            let datePredicate = NSPredicate(format: "modificationDate > %@", filter.minModificationDate as NSDate)
-            predicates.append(datePredicate)
+            // dueDateを持つ場合、Filter.expired/today/tomorrow/inWeekのいずれかを指す
+            if filter.dueDate != nil {
+                switch filter {
+                    
+                case .expired:
+                    let datePredicate = NSPredicate(format: "dueDate < %@", Date.now as NSDate)
+                    predicates.append(datePredicate)
+                    
+                case .today:
+                    let calendar = Calendar.current
+                    let currentDate = Date()
+                    
+                    let todayStart = calendar.startOfDay(for: currentDate)
+                    if let todayEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: currentDate) {
+                        // 期日が本日中の issue を検索するための predicate を設定
+                        let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", todayStart as NSDate, todayEnd as NSDate)
+                        predicates.append(datePredicate)
+                    } else {
+                        print("error in Filter.today")
+                    }
+                    
+                case .tomorrow:
+                    let calendar = Calendar.current
+                    let currentDate = Date()
+                    
+                    let tomorrowStart = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: currentDate)!)
+                    if let tomorrowEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: tomorrowStart) {
+                        // 期日が明日中の issue を検索するための predicate を設定
+                        let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", tomorrowStart as NSDate, tomorrowEnd as NSDate)
+                        predicates.append(datePredicate)
+                    } else {
+                        print("error in Filter.tomorrow")
+                    }
+                    
+                case .inWeek:
+                    let calendar = Calendar.current
+                    let currentDate = Date()
+                    
+                    let start = calendar.startOfDay(for: currentDate)
+                    if let oneWeekLater = calendar.date(byAdding: .day, value: 7, to: currentDate){
+                        if let oneWeekLaterEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: oneWeekLater) {
+                            // 期日が明日中の issue を検索するための predicate を設定
+                            let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", start as NSDate, oneWeekLaterEnd as NSDate)
+                            predicates.append(datePredicate)
+                        } else {
+                            print("error in Filter.inWeek_2")
+                        }
+                    } else {
+                        print("error in Filter.inWeek_1")
+                    }
+                    
+                default:
+                    print("error: unexpected filter!")
+                }
+                // dueDateを持たない場合、Filter.allを指す
+            } else {
+                let datePredicate = NSPredicate(format: "modificationDate > %@", filter.minModificationDate as NSDate)
+                predicates.append(datePredicate)
+            }
         }
         
         // ContentViewの検索boxに文字列が入力されていれば、文字列をタイトル/コンテンツに含むIssueをフェッチ条件へ追加
@@ -289,6 +348,7 @@ class DataController: ObservableObject {
         let issue = Issue(context: container.viewContext)
         issue.title = NSLocalizedString("New issue", comment: "Create a new issue")
         issue.creationDate = .now
+        issue.dueDate = .now.addingTimeInterval(86400 * 7)
         issue.priority = 1
         if let tag = selectedFilter?.tag {
             issue.addToTags(tag)
@@ -344,6 +404,7 @@ class DataController: ObservableObject {
 enum SortType: String {
     case dateCreated = "creationDate"
     case dateModified = "modificationDate"
+    case dueDate = "dueDate"
 }
 
 // ContentViewのIssueリストのフィルタ利用としてIssueのステータスを定義した型

@@ -24,6 +24,7 @@ struct ContentViewToolbar: View {
                 Picker("Sort By", selection: $dataController.sortType) {
                     Text("Date Created").tag(SortType.dateCreated)
                     Text("Date Modified").tag(SortType.dateModified)
+                    Text("Due Date").tag(SortType.dueDate)
                 }
                 
                 Divider()

@@ -20,7 +20,10 @@
 "Filters" = "フィルタ";
 "Smart Filters" = "スマートフィルタ";
 "All Issues" = "全て";
-"Recent Issues" = "直近1週間";
+"Expired Issues" = "期限超過";
+"Today's Issues" = "本日期限";
+"Tomorrow's Issues" = "明日期限";
+"Weekly Issues" = "期限1週間内";
 "Tags" = "タグフィルタ";
 "Add tag" = "タグ追加";
 "Show awards" = "アワード表示";
@@ -40,6 +43,7 @@
 "Sort By" = "並び替え"; /* Adjust the order issues are shown */
 "Date Created" = "作成日"; /* Sort issues by the date they were created */
 "Date Modified" = "変更日"; /* Sort issues by the date they were last changed */
+"Due Date" = "期日"; /* Sort issues by the due date  */
 "Newest to Oldest" = "新しい日付順"; /* Place newer issues before older issues */
 "Oldest to Newest" = "古い日付順"; /* Place older issues before newer issues */
 
@@ -77,6 +81,7 @@
 "Enter the issue title here" = "課題タイトルをここに入力してください";
 "**Modified:** %@" = "**更新日時:** %@";
 "**Status:** %@" = "**ステータス:** %@";
+"**DueDate:**" = "**期日:**";
 "Priority" = "優先度";
 "Add Tags" = "タグ追加";
 "Basic Information" = "基本情報";

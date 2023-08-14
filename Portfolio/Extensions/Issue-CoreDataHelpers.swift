@@ -19,6 +19,7 @@ extension Issue {
         issue.content = "This is an example issue."
         issue.priority = 2
         issue.creationDate = .now
+        issue.dueDate = .now.addingTimeInterval(86400 * 7)
         issue.completed = false
         return issue
     }
@@ -43,6 +44,12 @@ extension Issue {
     // オプショナルなmodificationDate属性に対しアンラップ処理を行う
     var issueModificationDate: Date {
         modificationDate ?? .now
+    }
+    
+    // オプショナルなdueDate属性に対しアンラップ処理を行う
+    var issueDueDate: Date {
+        get { dueDate ?? .now.addingTimeInterval(86400 * 7) }
+        set { dueDate = newValue }
     }
     
     // オプショナルなtags属性に対しアンラップ処理を行う、同時にNSSet型を[Tag]型へキャストする

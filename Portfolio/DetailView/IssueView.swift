@@ -32,6 +32,12 @@ struct IssueView: View {
                     
                     Text("**Status:** \(issue.issueStatus)")
                         .foregroundStyle(.secondary)
+                    
+                    HStack {
+                        Text("**DueDate:**")
+                        DatePicker("Please enter a date", selection: $issue.issueDueDate, displayedComponents: [.date, .hourAndMinute])
+                            .labelsHidden()
+                    }
                 }
                 
                 Picker("Priority", selection: $issue.priority) {

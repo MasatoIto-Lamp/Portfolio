@@ -19,7 +19,10 @@
 "Filters" = "Filters";
 "Smart Filters" = "Smart Filters";
 "All Issues" = "All Issues";
-"Recent Issues" = "Recent Issues";
+"Expired Issues" = "Expired Issues";
+"Today's Issues" = "Today's Issues";
+"Tomorrow's Issues" = "Tomorrow's Issues";
+"Weekly Issues" = "Weekly Issues";
 "Tags" = "Tags";
 "Add tag" = "Add tag";
 "Show awards" = "Show awards";
@@ -39,6 +42,7 @@
 "Sort By" = "Sort By"; /* Adjust the order issues are shown */
 "Date Created" = "Date Created"; /* Sort issues by the date they were created */
 "Date Modified" = "Date Modified"; /* Sort issues by the date they were last changed */
+"Due Date" = "Due Date"; /* Sort issues by the due date  */
 "Newest to Oldest" = "Newest to Oldest"; /* Place newer issues before older issues */
 "Oldest to Newest" = "Oldest to Newest"; /* Place older issues before newer issues */
 
@@ -76,6 +80,7 @@
 "Enter the issue title here" = "Enter the issue title here";
 "**Modified:** %@" = "**Modified:** %@";
 "**Status:** %@" = "**Status:** %@";
+"**DueDate:**" = "**DueDate:**";
 "Priority" = "Priority";
 "Add Tags" = "Add Tags";
 "Basic Information" = "Basic Information";
