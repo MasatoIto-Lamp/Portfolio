@@ -47,6 +47,7 @@ struct IssueRow: View {
                 }
                 .foregroundStyle(.secondary)
             }
+            .padding(.horizontal, 5)
             .background(dataController.colorForSelectedFilter(issue: issue))
             
         }
