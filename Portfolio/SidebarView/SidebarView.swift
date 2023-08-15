@@ -41,7 +41,9 @@ struct SidebarView: View {
     var body: some View {
         List(selection: $dataController.selectedFilter) {
             Section("Smart Filters") {
-                ForEach(smartFilters, content: SmartFilterRow.init)
+                ForEach(smartFilters){ filter in
+                    SmartFilterRow(filter: filter)
+                }
             }
             
             Section("Tags") {

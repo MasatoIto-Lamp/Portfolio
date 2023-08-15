@@ -37,7 +37,7 @@ class DataController: ObservableObject {
     
     // SidebarViewで選択されているフィルタを保持する
     @Published var selectedFilter: Filter? = Filter.all
-    
+
     // ContentViewで選択されているIssueを保持する
     @Published var selectedIssue: Issue?
     
@@ -57,9 +57,9 @@ class DataController: ObservableObject {
     @Published var filterStatus = Status.open
     
     // ContentViewのIssue一覧リストのソートタイプ(作成日/更新日)を保持する
-    @Published var sortType = SortType.dateCreated
+    @Published var sortType = SortType.dueDate
     
-    // ContentViewのソート順を日付が新しい順に並べるかどうか保持する
+    // ContentViewのソート順を日付が古い順に上から並べるかどうか保持する
     @Published var sortNewestFirst = true
     
     // ContentViewの検索Boxで提案されるトークンの一覧を返す
@@ -188,6 +188,77 @@ class DataController: ObservableObject {
     // リモートでの変更を検知した際にUIを更新する
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
+    }
+    
+    // SidebarViewの各スマートフィルタに該当するオープンなタスク数を返す
+    func activeTaskcount(filter: Filter) -> Int {
+        let request = Issue.fetchRequest()
+        // Issueフェッチ時の条件を格納する
+        var predicates = [NSPredicate]()
+        
+        let statusPredicate = NSPredicate(format: "completed == %d", false)
+        predicates.append(statusPredicate)
+        
+        let calendar = Calendar.current
+        let currentDate = Date()
+        
+        switch filter {
+        case .all:
+            let datePredicate = NSPredicate(format: "modificationDate > %@", filter.minModificationDate as NSDate)
+            predicates.append(datePredicate)
+            
+        case .expired:
+            let datePredicate = NSPredicate(format: "dueDate < %@", Date.now as NSDate)
+            predicates.append(datePredicate)
+            
+        case .today:
+            let todayStart = calendar.startOfDay(for: currentDate)
+            
+            if let todayEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: currentDate) {
+                // 期日が本日中のtaskを検索するための predicate を設定
+                let datePredicate = NSPredicate(
+                    format: "dueDate >= %@ AND dueDate <= %@", todayStart as NSDate, todayEnd as NSDate)
+                predicates.append(datePredicate)
+            } else {
+                print("error in Filter.today")
+            }
+            
+        case .tomorrow:
+            let tomorrowStart = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: currentDate)!)
+            
+            if let tomorrowEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: tomorrowStart) {
+                // 期日が明日中の task を検索するための predicate を設定
+                let datePredicate = NSPredicate(
+                    format: "dueDate >= %@ AND dueDate <= %@", tomorrowStart as NSDate, tomorrowEnd as NSDate)
+                predicates.append(datePredicate)
+            } else {
+                print("error in Filter.tomorrow")
+            }
+            
+        case .inWeek:
+            let start = calendar.startOfDay(for: currentDate)
+            
+            if let oneWeekLater = calendar.date(byAdding: .day, value: 7, to: currentDate){
+                if let oneWeekLaterEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: oneWeekLater) {
+                    // 期日が明日中の task を検索するための predicate を設定
+                    let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", start as NSDate, oneWeekLaterEnd as NSDate)
+                    predicates.append(datePredicate)
+                } else {
+                    print("error in Filter.inWeek_2")
+                }
+            } else {
+                print("error in Filter.inWeek_1")
+            }
+            
+        default:
+            print("Error : unexpected filter selected")
+        }
+        
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        
+        print("******\(count(for: request))*********")
+        return count(for: request)
+        
     }
     
     // Issueに紐づいていないタグを全て返す
@@ -321,7 +392,7 @@ class DataController: ObservableObject {
         
         let request = Issue.fetchRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
+        request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: !sortNewestFirst)]
         
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         return allIssues

@@ -79,9 +79,13 @@ extension Issue {
     }
     
     // Issue作成日をDate型からString型へ変換
-    // ContentViewのIssue一覧リストの各行に表示する
     var issueFormattedCreationDate: String {
         issueCreationDate.formatted(date: .numeric, time: .omitted)
+    }
+    
+    // Issue期日をDate型からString型へ変換
+    var issueFormattedDueDate: String {
+        issueDueDate.formatted(date: .numeric, time: .omitted)
     }
 }
 

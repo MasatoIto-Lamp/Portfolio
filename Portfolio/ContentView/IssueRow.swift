@@ -36,8 +36,8 @@ struct IssueRow: View {
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    Text(issue.issueFormattedCreationDate)
-                        .accessibilityLabel(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
+                    Text(issue.issueFormattedDueDate)
+                        .accessibilityLabel(issue.issueDueDate.formatted(date: .abbreviated, time: .omitted))
                         .font(.subheadline)
                     
                     if issue.completed {
