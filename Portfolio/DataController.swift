@@ -196,7 +196,7 @@ class DataController: ObservableObject {
         // Issueフェッチ時の条件を格納する
         var predicates = [NSPredicate]()
         
-        let statusPredicate = NSPredicate(format: "completed == %d", false)
+        let statusPredicate = NSPredicate(format: "completed = %d", false)
         predicates.append(statusPredicate)
         
         let calendar = Calendar.current
@@ -256,7 +256,6 @@ class DataController: ObservableObject {
         
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
-        print("******\(count(for: request))*********")
         return count(for: request)
         
     }
@@ -385,7 +384,7 @@ class DataController: ObservableObject {
             // Issueのステータス(Open/Closed)に合致することをフェッチ条件へ追加
             if filterStatus != .all {
                 let lookForClosed = (filterStatus == .closed)
-                let statusFilter = NSPredicate(format: "completed = %@", NSNumber(value: lookForClosed))
+                let statusFilter = NSPredicate(format: "completed == %d", lookForClosed)
                 predicates.append(statusFilter)
             }
         }
@@ -425,6 +424,7 @@ class DataController: ObservableObject {
         issue.creationDate = .now
         issue.dueDate = .now.addingTimeInterval(86400 * 7)
         issue.priority = 1
+        issue.completed = false
         if let tag = selectedFilter?.tag {
             issue.addToTags(tag)
         }
