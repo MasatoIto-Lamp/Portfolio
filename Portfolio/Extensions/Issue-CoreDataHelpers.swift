@@ -58,7 +58,7 @@ extension Issue {
         return result.sorted()
     }
     
-    // Issueの状態を文字列で返す
+    // タスクの状態を文字列で返す
     var issueStatus: String {
         if completed {
             return NSLocalizedString("Closed", comment: "Closed")
@@ -67,7 +67,7 @@ extension Issue {
         }
     }
     
-    // Issueに紐づく全てのタグを結合してString型として返す
+    // タスクに紐づく全てのタグを結合してString型として返す
     var issueTagsList: String {
         guard let tags else { return "No tags" }
 
@@ -85,7 +85,7 @@ extension Issue {
     }
 }
 
-// フィルタ条件に合うIssueをデータベースから取得した後、ソート処理行うためComparableへ準拠する
+// フィルタ条件に合うタスクをデータベースから取得した後、ソート処理行うためComparableへ準拠する
 extension Issue: Comparable {
     public static func < (lhs: Issue, rhs: Issue) -> Bool {
         let left = lhs.issueTitle.localizedLowercase

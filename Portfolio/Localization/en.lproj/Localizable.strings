@@ -18,11 +18,11 @@
 /* SIDEBARVIEW */
 "Filters" = "Filters";
 "Smart Filters" = "Smart Filters";
-"All Issues" = "All Issues";
-"Expired Issues" = "Expired Issues";
-"Today's Issues" = "Today's Issues";
-"Tomorrow's Issues" = "Tomorrow's Issues";
-"Weekly Issues" = "Weekly Issues";
+"All Tasks" = "All Tasks";
+"Expired Tasks" = "Expired Tasks";
+"Today's Tasks" = "Today's Tasks";
+"Tomorrow's Tasks" = "Tomorrow's Tasks";
+"Weekly Tasks" = "Weekly Tasks";
 "Tags" = "Tags";
 "Add tag" = "Add tag";
 "Show awards" = "Show awards";
@@ -39,12 +39,12 @@
 "Filter" = "Filter";
 "Turn Filter On" = "Turn Filter On"; /* Enables filtering */
 "Turn Filter Off" = "Turn Filter Off"; /* Disables filtering */
-"Sort By" = "Sort By"; /* Adjust the order issues are shown */
-"Date Created" = "Date Created"; /* Sort issues by the date they were created */
-"Date Modified" = "Date Modified"; /* Sort issues by the date they were last changed */
-"Due Date" = "Due Date"; /* Sort issues by the due date  */
-"Newest to Oldest" = "Newest to Oldest"; /* Place newer issues before older issues */
-"Oldest to Newest" = "Oldest to Newest"; /* Place older issues before newer issues */
+"Sort By" = "Sort By"; /* Adjust the order tasks are shown */
+"Date Created" = "Date Created"; /* Sort tasks by the date they were created */
+"Date Modified" = "Date Modified"; /* Sort tasks by the date they were last changed */
+"Due Date" = "Due Date"; /* Sort tasks by the due date  */
+"Newest to Oldest" = "Newest to Oldest"; /* Place newer tasks before older tasks */
+"Oldest to Newest" = "Oldest to Newest"; /* Place older tasks before newer tasks */
 
 "All" = "All";
 "Open" = "Open";
@@ -54,13 +54,13 @@
 "Medium" = "Medium";
 "High" = "High";
 
-/* Create a new issue */
-"New Issue" = "New Issue";
+/* Create a new task */
+"New Task" = "New Task";
 
 /* A text placeholder, to help users search */
-"Filter issues, or type # to add tags" = "Filter issues, or type # to add tags";
+"Filter tasks, or type # to add tags" = "Filter tasks, or type # to add tags";
 
-/* Shown as a status for closed issues */
+/* Shown as a status for closed tasks */
 "CLOSED" = "CLOSED";
 
 
@@ -69,22 +69,22 @@
 "Details" = "Details";
 
 /* NOISSUEVIEW */
-"No Issue Selected" = "No Issue Selected";
+"No Task Selected" = "No Task Selected";
 
 /* ISSUEVIEW */
-"Copy Issue Title" = "Copy Issue Title";
-"Close Issue" = "Close Issue";
-"Re-open Issue" = "Re-open Issue";
+"Copy Task Title" = "Copy Task Title";
+"Close Task" = "Close Task";
+"Re-open Task" = "Re-open Task";
 
-/* Fields that let the users enter details about a specific issue */
-"Enter the issue title here" = "Enter the issue title here";
+/* Fields that let the users enter details about a specific task */
+"Enter the task title here" = "Enter the task title here";
 "**Modified:** %@" = "**Modified:** %@";
 "**Status:** %@" = "**Status:** %@";
 "**DueDate:**" = "**DueDate:**";
 "Priority" = "Priority";
 "Add Tags" = "Add Tags";
 "Basic Information" = "Basic Information";
-"Enter the issue description here" = "Enter the issue description here";
+"Enter the task description here" = "Enter the task description here";
 
 
 
@@ -96,7 +96,7 @@
 
 /* DATA */
 "New tag" = "New tag";
-"New issue" = "New issue";
+"New task" = "New task";
 
 
 

@@ -13,11 +13,11 @@ struct NoIssueView: View {
     @EnvironmentObject var dataController: DataController
 
     var body: some View {
-        Text("No Issue Selected")
+        Text("No Task Selected")
             .font(.title)
             .foregroundStyle(.secondary)
 
-        Button("New Issue", action: dataController.newIssue)
+        Button("New Task", action: dataController.newIssue)
     }
 }
 

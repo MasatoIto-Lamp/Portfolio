@@ -20,12 +20,12 @@ struct ContentView: View {
             }
             .onDelete(perform: delete)
         }
-        .navigationTitle("Issues")
+        .navigationTitle("Tasks")
         .searchable(
             text: $dataController.filterText,
             tokens: $dataController.filterTokens,
             suggestedTokens: .constant(dataController.suggestedFilterTokens),
-            prompt: "Filter issues, or type # to add tags") { tag in
+            prompt: "Filter tasks, or type # to add tags") { tag in
             Text(tag.tagName)
         }
         .toolbar(content: ContentViewToolbar.init)

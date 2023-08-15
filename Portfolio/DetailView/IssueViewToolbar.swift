@@ -17,7 +17,7 @@ struct IssueViewToolbar: View {
     
     // DeatiViewツールバー上のClose/Re-Openボタンのラベルで使用する文字列
     var openCloseButtonText: LocalizedStringKey {
-        issue.completed ? "Re-open Issue" : "Close Issue"
+        issue.completed ? "Re-open Task" : "Close Task"
     }
 
     // MenuボタンにてIssueのタイトルをコピーするボタン、Close/Reopenのボタンを表示する
@@ -26,7 +26,7 @@ struct IssueViewToolbar: View {
             Button {
                 UIPasteboard.general.string = issue.title
             } label: {
-                Label("Copy Issue Title", systemImage: "doc.on.doc")
+                Label("Copy Task Title", systemImage: "doc.on.doc")
             }
 
             Button {

@@ -131,14 +131,14 @@ class DataController: ObservableObject {
         for tagCounter in 1...5 {
             let tag = Tag(context: viewContext)
             tag.id = UUID()
-            tag.name = "Tag \(tagCounter)"
+            tag.name = "タグ \(tagCounter)"
             
             for issueCounter in 1...10 {
                 let issue = Issue(context: viewContext)
-                issue.title = "Issue \(tagCounter)-\(issueCounter)"
+                issue.title = "タスク \(tagCounter)-\(issueCounter)"
                 issue.content = NSLocalizedString("Description goes here", comment: "Write description here")
-                issue.creationDate = .now
-                issue.dueDate = .now.addingTimeInterval(86400 * 7)
+                issue.creationDate = .now.addingTimeInterval(TimeInterval(86400 * Int.random(in: -7...7)))
+                issue.dueDate = .now.addingTimeInterval(TimeInterval(86400 * Int.random(in: -2...7)))
                 issue.completed = Bool.random()
                 issue.priority = Int16.random(in: 0...2)
                 tag.addToIssues(issue)
@@ -240,7 +240,7 @@ class DataController: ObservableObject {
                     
                     let todayStart = calendar.startOfDay(for: currentDate)
                     if let todayEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: currentDate) {
-                        // 期日が本日中の issue を検索するための predicate を設定
+                        // 期日が本日中のtaskを検索するための predicate を設定
                         let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", todayStart as NSDate, todayEnd as NSDate)
                         predicates.append(datePredicate)
                     } else {
@@ -253,7 +253,7 @@ class DataController: ObservableObject {
                     
                     let tomorrowStart = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: currentDate)!)
                     if let tomorrowEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: tomorrowStart) {
-                        // 期日が明日中の issue を検索するための predicate を設定
+                        // 期日が明日中の task を検索するための predicate を設定
                         let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", tomorrowStart as NSDate, tomorrowEnd as NSDate)
                         predicates.append(datePredicate)
                     } else {
@@ -267,7 +267,7 @@ class DataController: ObservableObject {
                     let start = calendar.startOfDay(for: currentDate)
                     if let oneWeekLater = calendar.date(byAdding: .day, value: 7, to: currentDate){
                         if let oneWeekLaterEnd = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: oneWeekLater) {
-                            // 期日が明日中の issue を検索するための predicate を設定
+                            // 期日が明日中の task を検索するための predicate を設定
                             let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", start as NSDate, oneWeekLaterEnd as NSDate)
                             predicates.append(datePredicate)
                         } else {
@@ -327,8 +327,12 @@ class DataController: ObservableObject {
         return allIssues
     }
     
-    // ContetnViewで表示する各Issue行の背景色を返す
+    // ContetnViewで表示する各task行の背景色を返す
     func colorForSelectedFilter(issue: Issue) -> Color {
+        if selectedIssue == issue {
+            return .white.opacity(0)
+        }
+        
         if issue.completed {
             return .gray.opacity(0.5)
         } else {
@@ -343,10 +347,10 @@ class DataController: ObservableObject {
         }
     }
     
-    // 新たなIssueを作成する
+    // 新たなtaskを作成する
     func newIssue() {
         let issue = Issue(context: container.viewContext)
-        issue.title = NSLocalizedString("New issue", comment: "Create a new issue")
+        issue.title = NSLocalizedString("New task", comment: "Create a new task")
         issue.creationDate = .now
         issue.dueDate = .now.addingTimeInterval(86400 * 7)
         issue.priority = 1
@@ -374,13 +378,13 @@ class DataController: ObservableObject {
     func hasEarned(award: Award) -> Bool {
         switch award.criterion {
         case "issues":
-            // returns true if they added a certain number of issues
+            // returns true if they added a certain number of tasks
             let fetchRequest = Issue.fetchRequest()
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
             
         case "closed":
-            // returns true if they closed a certain number of issues
+            // returns true if they closed a certain number of tasks
             let fetchRequest = Issue.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "completed = true")
             let awardCount = count(for: fetchRequest)
@@ -400,7 +404,7 @@ class DataController: ObservableObject {
     }
 }
 
-// ContentViewのIssueリストのソート順を定義した型
+// ContentViewのtaskリストのソート順を定義した型
 enum SortType: String {
     case dateCreated = "creationDate"
     case dateModified = "modificationDate"

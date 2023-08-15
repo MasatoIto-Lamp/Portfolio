@@ -46,7 +46,7 @@ final class ExtensionTests: BaseTestCase {
         let tag = Tag(context: managedObjectContext)
         let issue = Issue(context: managedObjectContext)
 
-        XCTAssertEqual(issue.issueTags.count, 0, "A new issue should have no tags.")
+        XCTAssertEqual(issue.issueTags.count, 0, "A new task should have no tags.")
 
         issue.addToTags(tag)
         XCTAssertEqual(issue.issueTags.count, 1, "Adding 1 tag to an issue should result in issueTags having count 1.")
@@ -102,7 +102,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(tag.tagActiveIssues.count, 0, "A new tag should have 0 active issues.")
 
         tag.addToIssues(issue)
-        XCTAssertEqual(tag.tagActiveIssues.count, 1, "A new tag with 1 new issue should have 1 active issue.")
+        XCTAssertEqual(tag.tagActiveIssues.count, 1, "A new tag with 1 new task should have 1 active issue.")
 
         issue.completed = true
         XCTAssertEqual(tag.tagActiveIssues.count, 0, "A new tag with 1 completed issue should have 0 active issues.")

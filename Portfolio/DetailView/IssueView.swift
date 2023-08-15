@@ -23,7 +23,7 @@ struct IssueView: View {
                     TextField(
                         "Title",
                         text: $issue.issueTitle,
-                        prompt: Text("Enter the issue title here")
+                        prompt: Text("Enter the task title here")
                     )
                     .font(.title)
                     

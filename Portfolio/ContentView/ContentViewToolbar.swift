@@ -15,7 +15,7 @@ struct ContentViewToolbar: View {
     var body: some View {
         // Issueを新規追加するボタン
         Button(action: dataController.newIssue) {
-            Label("New Issue", systemImage: "square.and.pencil")
+            Label("New Task", systemImage: "square.and.pencil")
         }
         
         // ソート順を設定するMenuボタン

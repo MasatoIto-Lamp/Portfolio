@@ -12,34 +12,34 @@ struct Filter: Identifiable, Hashable {
     // 全てのIssueを表示するためのフィルタ(スマートフィルタ)
     static var all = Filter(
         id: UUID(),
-        name: "All Issues",
+        name: "All Tasks",
         icon: "tray")
     
     // 期限切れのIssueを表示するためのフィルタ(スマートフィルタ)
     static var expired = Filter(
         id: UUID(),
-        name: "Expired Issues",
+        name: "Expired Tasks",
         icon: "calendar.badge.exclamationmark",
         dueDate: .now)
     
     // 本日対応期限のIssueを表示するためのフィルタ(スマートフィルタ)
     static var today = Filter(
         id: UUID(),
-        name: "Today's Issues",
+        name: "Today's Tasks",
         icon: "calendar.badge.exclamationmark",
         dueDate: .now)
     
     // 明日対応期限のIssueを表示するためのフィルタ(スマートフィルタ)
     static var tomorrow = Filter(
         id: UUID(),
-        name: "Tomorrow's Issues",
+        name: "Tomorrow's Tasks",
         icon: "calendar.badge.exclamationmark",
         dueDate: .now)
     
     // 1週間以内が対応期限のIssueを表示するためのフィルタ(スマートフィルタ)
     static var inWeek = Filter(
         id: UUID(),
-        name: "Weekly Issues",
+        name: "Weekly Tasks",
         icon: "calendar.badge.exclamationmark",
         dueDate: .now)
 
