@@ -5,7 +5,8 @@ Portfolioは日々のタスクを管理するためのタスク管理アプリ�
 ポートフォリオとしての色合いが濃いため、AppStoreに公開はしていません。</br>
 動作確認の際にはお手数ですがローカル環境で実行をお願いします (検証済み実行環境は下記の通り)
 
-<p align="center">
+<p align="left">
+    <img width="300" alt="画面イメージ" src="https://github.com/MasatoIto-Lamp/Portfolio/assets/69897427/a485974a-30db-444e-b956-5c08942042ac"></br>
     <img src="https://img.shields.io/badge/iOS-16.0+-blue.svg" />
     <img src="https://img.shields.io/badge/Swift-5.0-brightgreen.svg" />
 </p>
