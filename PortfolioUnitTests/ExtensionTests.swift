@@ -9,7 +9,9 @@ import XCTest
 import CoreData
 @testable import Portfolio
 
+// エクステンションに関するテスト
 final class ExtensionTests: BaseTestCase {
+    // Issueのtitleプロパティに対するアンラッププロパティをテスト
     func testIssueTitleUnwrap() {
         let issue = Issue(context: managedObjectContext)
 
@@ -20,6 +22,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(issue.title, "Updated issue", "Changing issueTitle should also change title.")
     }
 
+    // Issueのcontentプロパティに対するアンラッププロパティをテスト
     func testIssueContentUnwrap() {
         let issue = Issue(context: managedObjectContext)
 
@@ -30,18 +33,29 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(issue.content, "Updated issue", "Changing issueContent should also change content.")
     }
 
+    // IssueのcreationDateプロパティに対するアンラッププロパティをテスト
     func testIssueCreationDateUnwrap() {
-        // Given
         let issue = Issue(context: managedObjectContext)
         let testDate = Date.now
 
-        // When
         issue.creationDate = testDate
-
-        // Then
         XCTAssertEqual(issue.issueCreationDate, testDate, "Changing creationDate should also change issueCreationDate.")
     }
+    
+    // IssueのdueDateプロパティに対するアンラッププロパティをテスト
+    func testDueDateUnwrap() {
+        let issue = Issue(context: managedObjectContext)
+        var testDate = Date.now
 
+        issue.dueDate = testDate
+        XCTAssertEqual(issue.issueDueDate, testDate, "Changing dueDate should also change issueDueDate.")
+        
+        testDate = testDate.addingTimeInterval(10)
+        issue.issueDueDate = testDate
+        XCTAssertEqual(issue.dueDate, testDate, "Changing issueDueDate should also change dueDate.")
+    }
+    
+    // IssueとTagの関係性をテスト
     func testIssueTagsUnwrap() {
         let tag = Tag(context: managedObjectContext)
         let issue = Issue(context: managedObjectContext)
@@ -52,6 +66,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(issue.issueTags.count, 1, "Adding 1 tag to an issue should result in issueTags having count 1.")
     }
 
+    // Issueへタグ付け後、タグ名が正しく反映されるかをテスト
     func testIssueTagsList() {
         let tag = Tag(context: managedObjectContext)
         let issue = Issue(context: managedObjectContext)
@@ -62,6 +77,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(issue.issueTagsList, "My Tag", "Adding 1 tag to an issue should make issueTagsList be My Tag.")
     }
 
+    // IssueのソートがtitleとcreationDateにより決まることをテスト
     func testIssueSortingIsStable() {
         let issue1 = Issue(context: managedObjectContext)
         issue1.title = "B Issue"
@@ -81,6 +97,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual([issue3, issue1, issue2], sorted, "Sorting issue arrays should use name then creation date.")
     }
 
+    // Tagのidプロパティに対するアンラッププロパティをテスト
     func testTagIDUnwrap() {
         let tag = Tag(context: managedObjectContext)
 
@@ -88,6 +105,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(tag.tagID, tag.id, "Changing id should also change tagID.")
     }
 
+    // Tagのnameプロパティに対するアンラッププロパティをテスト
     func testTagNameUnwrap() {
         let tag = Tag(context: managedObjectContext)
 
@@ -95,6 +113,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(tag.tagName, "Example Tag", "Changing name should also change tagName.")
     }
 
+    // TagとIssueの関係性をテスト
     func testTagActiveIssues() {
         let tag = Tag(context: managedObjectContext)
         let issue = Issue(context: managedObjectContext)
@@ -108,6 +127,7 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual(tag.tagActiveIssues.count, 0, "A new tag with 1 completed issue should have 0 active issues.")
     }
 
+    // Tagのソート順がnameとidで決定されることをテスト
     func testTagSortingIsStable() {
         let tag1 = Tag(context: managedObjectContext)
         tag1.name = "B Tag"
@@ -127,17 +147,20 @@ final class ExtensionTests: BaseTestCase {
         XCTAssertEqual([tag3, tag1, tag2], sortedTags, "Sorting tag array should use name then UUID string.")
     }
 
+    // アワードデータが正しくデコードできることをテスト
     func testBundleDecodingAwards() {
         let awards = Bundle.main.decode("Awards.json", as: [Award].self)
         XCTAssertFalse(awards.isEmpty, "Awards.json should decode to a non-empty array.")
     }
 
+    // decode関数が他の型(String)でも動作することをテスト
     func testDecodingString() {
         let bundle = Bundle(for: ExtensionTests.self)
         let data = bundle.decode("DecodableString.json", as: String.self)
         XCTAssertEqual(data, "Never ask a starfish for directions.", "The string must match DecodableString.json.")
     }
 
+    // decode関数が他の型(Dictionary)でも動作することをテスト
     func testDecodingDictionary() {
         let bundle = Bundle(for: ExtensionTests.self)
         let data = bundle.decode("DecodableDictionary.json", as: [String: Int].self)

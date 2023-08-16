@@ -9,6 +9,7 @@ import CoreData
 import XCTest
 @testable import Portfolio
 
+// テスト実施前準備
 class BaseTestCase: XCTestCase {
     var dataController: DataController!
     var managedObjectContext: NSManagedObjectContext!

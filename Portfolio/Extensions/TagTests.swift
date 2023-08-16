@@ -9,7 +9,10 @@ import CoreData
 import XCTest
 @testable import Portfolio
 
+// コアデータのテスト
 final class TagTests: BaseTestCase {
+    
+    // TagとIssueが正しく生成されることをテスト
     func testCreatingTagsAndIssues() {
         let count = 10
         let issueCount = count * count
@@ -27,6 +30,7 @@ final class TagTests: BaseTestCase {
         XCTAssertEqual(dataController.count(for: Issue.fetchRequest()), issueCount, "Expected \(issueCount) issues.")
     }
 
+    // Tagを削除しても関連するIssueが削除されないことをテスト(nullify削除ルールが有効であるか確認するテスト)
     func testDeletingTagDoesNotDeleteIssues() throws {
         dataController.createSampleData()
 
